@@ -6,8 +6,8 @@ import Photos from './views/Photos';
 const App = () => {
   return (
     <View style={styles.container}>
-      <Albums />
-      {/* <Photos /> */}
+      {/* <Albums /> */}
+      <Photos />
     </View>
   );
 };
