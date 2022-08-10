@@ -1,21 +1,24 @@
 import {useState, useEffect} from 'react';
 import {createUrl} from '../variables';
 
-const useFetch = (url, options = {method: 'GET', body: {}, query: {}}) => {
+const useFetch = (
+  url: string,
+  options = {method: 'GET', body: {}, query: {}},
+) => {
   const [data, setData] = useState({
-    response: null,
+    response: {} || null,
     error: false,
     loading: true,
   });
 
   useEffect(() => {
-    setData({...data, error: null, loading: true});
+    setData({...data, error: false, loading: true});
     fetch(createUrl(url, options.query), {
       method: options.method || 'GET',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: options.method !== 'GET' && JSON.stringify(options.body),
+      body: options.method !== 'GET' && Object(JSON.stringify(options.body)),
     })
       .then(async response => {
         const data = await response.json();
