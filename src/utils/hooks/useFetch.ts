@@ -6,7 +6,7 @@ const useFetch = (
   options = {method: 'GET', body: {}, query: {}},
 ) => {
   const [data, setData] = useState({
-    response: {} || null,
+    response: null,
     error: false,
     loading: true,
   });
