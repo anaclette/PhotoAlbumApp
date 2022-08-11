@@ -2,5 +2,8 @@
   "root": true,
   "extends": ["@react-native-community", "plugin:prettier/recommended"],
   "parser": "@typescript-eslint/parser",
-  "plugins": ["simple-import-sort", "@typescript-eslint"]
+  "plugins": ["simple-import-sort", "@typescript-eslint"],
+  "rules": {
+    "prettier/prettier": 0
+  }
 }
