@@ -1,7 +1,7 @@
 import React from 'react';
 import {API_HOST, ENDPOINTS} from '../utils/variables';
 import useFetch from '../utils/hooks/useFetch';
-import {View, Text, StyleSheet, FlatList} from 'react-native';
+import {Text, StyleSheet, FlatList, SafeAreaView} from 'react-native';
 import AlbumItem from '../components/AlbumItem';
 
 const Albums = () => {
@@ -17,7 +17,7 @@ const Albums = () => {
   }
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text style={[styles.title, styles.shadowProp]}>Photo albums</Text>
       {response ? (
         <FlatList
@@ -28,14 +28,12 @@ const Albums = () => {
       ) : (
         <Text style={styles.text}>Photo album</Text>
       )}
-    </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    paddingTop: 70,
-  },
+  container: {},
   title: {
     fontSize: 50,
     color: '#2e294e',
