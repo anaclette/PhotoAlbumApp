@@ -1,10 +1,22 @@
 import React from 'react';
 import {API_HOST, ENDPOINTS} from '../utils/variables';
 import useFetch from '../utils/hooks/useFetch';
-import {Text, StyleSheet, FlatList, SafeAreaView} from 'react-native';
+import {
+  Text,
+  StyleSheet,
+  FlatList,
+  SafeAreaView,
+  View,
+  Button,
+} from 'react-native';
 import PhotoItem from '../components/PhotoItem';
+import {StackScreenProps} from '@react-navigation/stack';
+import {TouchableOpacity} from 'react-native-gesture-handler';
+import {RootStackParams} from '../navigator/StackNavigator';
 
-const Albums = () => {
+interface Props extends StackScreenProps<RootStackParams, 'Photos'> {}
+
+const Photos = ({navigation}: Props) => {
   const {response, error, loading} = useFetch(
     `${API_HOST}/${ENDPOINTS.PHOTOS}`,
   );
@@ -18,16 +30,25 @@ const Albums = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.title}>Photos</Text>
-      {response ? (
-        <FlatList
-          style={styles.list}
-          data={response}
-          renderItem={({item}) => <PhotoItem photo={item} />}
-        />
-      ) : (
-        <Text style={styles.text}>Photos</Text>
-      )}
+      <View>
+        <Text style={styles.title}>Photos</Text>
+      </View>
+      <FlatList
+        style={styles.list}
+        data={response}
+        renderItem={({item}) => (
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate('PhotoDetail', {
+                id: item['id'],
+                albumId: item['albumId'],
+                title: item['title'],
+              })
+            }>
+            <PhotoItem photo={item} />
+          </TouchableOpacity>
+        )}
+      />
     </SafeAreaView>
   );
 };
@@ -53,4 +74,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Albums;
+export default Photos;
