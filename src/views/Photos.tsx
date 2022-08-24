@@ -43,6 +43,8 @@ const Photos = ({navigation}: Props) => {
                 id: item['id'],
                 albumId: item['albumId'],
                 title: item['title'],
+                url: item['url'],
+                thumbnailUrl: item['thumbnailUrl'],
               })
             }>
             <PhotoItem photo={item} />

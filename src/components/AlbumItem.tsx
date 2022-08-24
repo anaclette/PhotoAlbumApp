@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {capitalizeFirstLetter} from '../utils/variables';
 
-const AlbumItem = ({album}) => {
+const AlbumItem = ({album}: any) => {
   return (
     <View style={styles.container}>
       <Text style={styles.id}>{album.id}</Text>

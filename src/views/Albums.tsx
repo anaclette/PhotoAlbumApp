@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 15,
-    color: '#2e294e',
+    color: '#fafafa',
   },
 });
 
