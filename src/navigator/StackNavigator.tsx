@@ -2,8 +2,6 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {Tabs} from './Tabs';
 import PhotoDetail from '../views/PhotoDetail';
-import Photos from '../views/Photos';
-
 export type RootStackParams = {
   Photos: undefined;
   Tabs: undefined;
@@ -27,7 +25,6 @@ export const StackNavigator = () => {
       }}>
       <Stack.Screen name="Tabs" component={Tabs} />
       <Stack.Screen name="PhotoDetail" component={PhotoDetail} />
-      <Stack.Screen name="Photos" component={Photos} />
     </Stack.Navigator>
   );
 };
