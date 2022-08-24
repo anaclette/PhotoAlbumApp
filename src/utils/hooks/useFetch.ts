@@ -1,25 +1,15 @@
 import {useState, useEffect} from 'react';
-import {createUrl} from '../variables';
 
-const useFetch = (
-  url: string,
-  options = {method: 'GET', body: {}, query: {}},
-) => {
+const useFetch = (url: string) => {
   const [data, setData] = useState({
-    response: null,
+    response: [],
     error: false,
     loading: true,
   });
 
   useEffect(() => {
     setData({...data, error: false, loading: true});
-    fetch(createUrl(url, options.query), {
-      method: options.method || 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: options.method !== 'GET' && Object(JSON.stringify(options.body)),
-    })
+    fetch(url)
       .then(async response => {
         const data = await response.json();
         setData({
@@ -30,12 +20,12 @@ const useFetch = (
       })
       .catch(error => {
         setData({
-          response: {status: `${error.toString()}`},
+          response: error.toString(),
           error: true,
           loading: false,
         });
       });
-  }, [url, JSON.stringify(options)]);
+  }, [url]);
 
   return data;
 };
