@@ -15,7 +15,9 @@ const TabIcon = ({route, focused, isIOS}: IconProps) => {
     <Icon
       name={iconName}
       size={40}
-      color={focused && isIOS ? '#fafafa' : focused && !isIOS ? '#900' : 'gray'}
+      color={
+        focused && isIOS ? '#fafafa' : focused && !isIOS ? '#900' : '#9899a6'
+      }
     />
   );
 };

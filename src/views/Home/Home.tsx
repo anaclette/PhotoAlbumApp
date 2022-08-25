@@ -1,33 +1,37 @@
 import React from 'react';
 import {StackScreenProps} from '@react-navigation/stack';
-import {Button} from 'react-native';
+import {Pressable, Text} from 'react-native';
 
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {copies} from '../../utils/variables';
+import {styles} from './home.style';
 
 interface Props extends StackScreenProps<any, any> {}
 
 export const Home = ({navigation}: Props) => {
   return (
-    <SafeAreaView>
-      <Button
-        title="Photos"
+    <SafeAreaView style={styles.container}>
+      <Pressable
+        style={styles.button}
         onPress={() =>
           navigation.navigate('Photos', {
             id: 1,
             name: 'Photos',
           })
-        }
-      />
+        }>
+        <Text style={styles.buttonText}>{copies.PHOTOS_TITLE}</Text>
+      </Pressable>
 
-      <Button
-        title="Albums"
+      <Pressable
+        style={styles.button}
         onPress={() =>
           navigation.navigate('Albums', {
             id: 2,
             name: 'Albums',
           })
-        }
-      />
+        }>
+        <Text style={styles.buttonText}>{copies.ALBUMS_TITLE}</Text>
+      </Pressable>
     </SafeAreaView>
   );
 };

@@ -8,6 +8,7 @@ import {
   checkIfEmpty,
   validateUserInput,
 } from '../../utils/stringUtils';
+import {styles} from './login.style';
 
 export const Login = () => {
   const {signIn, authState, signOut} = useContext(AuthContext);
@@ -16,51 +17,21 @@ export const Login = () => {
   const {isLoggedIn, username} = authState;
 
   return (
-    <SafeAreaView
-      style={{
-        flex: 1,
-        alignItems: 'center',
-      }}>
+    <SafeAreaView style={styles.container}>
       {isLoggedIn ? (
         <>
-          <Text
-            style={{
-              color: '#fafa',
-              position: 'absolute',
-              top: '50%',
-              fontSize: 50,
-            }}>
-            {handleUserMessage(username!)}
-          </Text>
+          <Text style={styles.username}>{handleUserMessage(username!)}</Text>
 
           <TouchableHighlight onPress={() => signOut(!isLoggedIn)}>
-            <Text
-              style={{
-                marginTop: 50,
-                color: '#fafafa',
-                borderColor: 'white',
-                borderWidth: 2,
-                padding: 10,
-                borderRadius: 10,
-              }}>
-              {copies.LOGIN_SCREEN.LOG_OUT}
-            </Text>
+            <Text style={styles.buttonText}>{copies.LOGIN_SCREEN.LOG_OUT}</Text>
           </TouchableHighlight>
-          <View
-            style={{flex: 1, justifyContent: 'flex-end', alignItems: 'center'}}>
-            <Text style={{color: '#fafafa', fontSize: 30}}>
+
+          <View style={styles.userInputContainer}>
+            <Text style={styles.userInput}>
               {handleUserMessage(username!, true)}
             </Text>
             <TouchableHighlight onPress={() => signOut(!isLoggedIn)}>
-              <Text
-                style={{
-                  marginTop: 50,
-                  color: '#fafafa',
-                  borderColor: 'white',
-                  borderWidth: 2,
-                  padding: 10,
-                  borderRadius: 10,
-                }}>
+              <Text style={styles.buttonText}>
                 {copies.LOGIN_SCREEN.DIFF_ACCOUNT}
               </Text>
             </TouchableHighlight>
@@ -68,31 +39,22 @@ export const Login = () => {
         </>
       ) : (
         <>
-          <Text style={{color: 'white'}}>
+          <Text style={styles.warningText}>
             {userInput !== '' &&
               userInput.length < 5 &&
               copies.LOGIN_SCREEN.WRONG_USER_INPUT.LENGTH}
+            {emptyField && copies.LOGIN_SCREEN.WRONG_USER_INPUT.EMPTY_FIELD}
           </Text>
-          <Text style={{color: 'white'}}>
+          <Text style={styles.warningText}>
             {userInput !== '' &&
               validateUserInput(userInput) &&
               copies.LOGIN_SCREEN.WRONG_USER_INPUT.CHART_TYPE}
-          </Text>
-          <Text style={{color: 'white'}}>
-            {emptyField && copies.LOGIN_SCREEN.WRONG_USER_INPUT.EMPTY_FIELD}
           </Text>
 
           <TextInput
             autoCorrect={false}
             keyboardType="default"
-            style={{
-              backgroundColor: 'white',
-              position: 'absolute',
-              top: '50%',
-              width: '50%',
-              padding: 10,
-              borderRadius: 10,
-            }}
+            style={styles.textInput}
             placeholder="username"
             onChangeText={input => {
               checkIfEmpty(input, setEmptyField);
@@ -103,17 +65,7 @@ export const Login = () => {
           <TouchableHighlight
             onPress={() => signIn(userInput)}
             disabled={userInput.length < 5 || validateUserInput(userInput)}>
-            <Text
-              style={{
-                marginTop: 50,
-                color: '#fafafa',
-                borderColor: 'white',
-                borderWidth: 2,
-                padding: 10,
-                borderRadius: 10,
-              }}>
-              {copies.LOGIN_SCREEN.SIGN_IN}
-            </Text>
+            <Text style={styles.buttonText}>{copies.LOGIN_SCREEN.SIGN_IN}</Text>
           </TouchableHighlight>
         </>
       )}

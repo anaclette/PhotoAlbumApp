@@ -1,7 +1,7 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import {Tabs} from './Tabs';
-import PhotoDetail from '../views/PhotoDetail';
+import {Tabs} from './Tabs/Tabs';
+import PhotoDetail from '../views/Photos/PhotoDetail/PhotoDetail';
 
 export type RootStackParams = {
   Photos: undefined;

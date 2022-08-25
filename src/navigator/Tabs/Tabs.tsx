@@ -2,14 +2,14 @@ import React, {useContext} from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 
-import Albums from '../views/Albums';
-import Photos from '../views/Photos';
+import Albums from '../../views/Albums/Albums';
+import Photos from '../../views/Photos/Photos';
 import {Platform} from 'react-native';
-import TabIcon from '../components/TabIcon';
+import TabIcon from '../../components/TabIcon';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {AuthContext} from '../state/Auth';
-import {Login} from '../views/Login';
-import {Home} from '../views/Home';
+import {AuthContext} from '../../state/Auth';
+import {Login} from '../../views/Login/Login';
+import {Home} from '../../views/Home/Home';
 
 interface Props {
   height: number;
@@ -50,7 +50,7 @@ const TabsAndroid = ({height, loggedIn}: Props) => {
         tabBarShowIcon: true,
         tabBarIndicatorStyle: {backgroundColor: 'deeppink'},
         tabBarActiveTintColor: 'deeppink',
-        tabBarInactiveTintColor: 'gray',
+        tabBarInactiveTintColor: '#9899a6',
       })}>
       {loggedIn && (
         <>
@@ -76,11 +76,11 @@ const TabsIOS = ({height, loggedIn}: Props) => {
           return <TabIcon isIOS route={route} focused={focused} />;
         },
         tabBarActiveTintColor: '#fafafa',
-        tabBarInactiveTintColor: 'gray',
+        tabBarInactiveTintColor: '#9899a6',
         tabBarLabelStyle: {fontSize: 15},
         tabBarStyle: {
           height: height,
-          backgroundColor: 'black',
+          backgroundColor: '#2f4858',
           borderTopColor: '#fafafa',
           borderTopWidth: 2,
         },

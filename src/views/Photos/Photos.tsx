@@ -1,18 +1,12 @@
 import React from 'react';
-import {API_HOST, ENDPOINTS} from '../utils/variables';
-import useFetch from '../utils/hooks/useFetch';
-import {
-  Text,
-  StyleSheet,
-  FlatList,
-  SafeAreaView,
-  View,
-  Button,
-} from 'react-native';
-import PhotoItem from '../components/PhotoItem';
+import {API_HOST, copies, ENDPOINTS} from '../../utils/variables';
+import useFetch from '../../utils/hooks/useFetch';
+import {Text, StyleSheet, FlatList, SafeAreaView, View} from 'react-native';
+import PhotoItem from '../../components/PhotoItem/PhotoItem';
 import {StackScreenProps} from '@react-navigation/stack';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import {RootStackParams} from '../navigator/StackNavigator';
+import {RootStackParams} from '../../navigator/StackNavigator';
+import {styles} from './photos.style';
 
 interface Props extends StackScreenProps<RootStackParams, 'Photos'> {}
 
@@ -31,7 +25,7 @@ const Photos = ({navigation}: Props) => {
   return (
     <SafeAreaView style={styles.container}>
       <View>
-        <Text style={styles.title}>Photos</Text>
+        <Text style={styles.title}>{copies.PHOTOS_TITLE}</Text>
       </View>
       <FlatList
         style={styles.list}
@@ -54,26 +48,5 @@ const Photos = ({navigation}: Props) => {
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#495159',
-  },
-  title: {
-    fontSize: 50,
-    color: '#93b7be',
-    letterSpacing: 1.2,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    height: 70,
-  },
-  list: {
-    paddingTop: 10,
-  },
-  text: {
-    fontSize: 15,
-    color: '#93b7be',
-  },
-});
 
 export default Photos;
