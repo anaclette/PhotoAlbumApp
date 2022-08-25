@@ -5,24 +5,17 @@ export enum ENDPOINTS {
   PHOTOS = 'photos',
 }
 
-export const capitalizeFirstLetter = (str: string) => {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-};
-
-export const randomIcon = () => {
-  const iconNames = [
-    'beer',
-    'bicycle',
-    'airplane',
-    'color-palette',
-    'flower',
-    'book',
-    'american-football',
-    'heart',
-    'paw',
-    'star',
-    'game-controller',
-  ];
-
-  return iconNames[Math.floor(Math.random() * iconNames.length)];
+export const copies = {
+  ALBUMS_TITLE: 'Albums',
+  PHOTOS_TITLE: 'Photos',
+  LOGIN_SCREEN: {
+    SIGN_IN: 'Sign in',
+    LOG_OUT: 'Log out',
+    DIFF_ACCOUNT: 'Sign with a different account.',
+    WRONG_USER_INPUT: {
+      LENGTH: 'Username must be at least 5 characters long.',
+      CHART_TYPE: 'Alphanumeric characters only.',
+      EMPTY_FIELD: 'Username is required',
+    },
+  },
 };
