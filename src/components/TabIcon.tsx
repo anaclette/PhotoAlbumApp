@@ -1,6 +1,7 @@
 import React from 'react';
 import {ParamListBase, RouteProp} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {getIconName} from '../utils/stringUtils';
 
 interface IconProps {
   route: RouteProp<ParamListBase>;
@@ -9,23 +10,7 @@ interface IconProps {
 }
 
 const TabIcon = ({route, focused, isIOS}: IconProps) => {
-  let iconName: string = '';
-  switch (route.name) {
-    case 'Albums':
-      iconName = 'camera-outline';
-      break;
-
-    case 'Photos':
-      iconName = 'images-outline';
-      break;
-
-    case 'Home':
-      iconName = 'home-outline';
-      break;
-    case 'Profile':
-      iconName = 'person-outline';
-      break;
-  }
+  const iconName = getIconName(route);
   return (
     <Icon
       name={iconName}
