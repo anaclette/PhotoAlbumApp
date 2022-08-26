@@ -5,7 +5,7 @@ import typography from '../../themes/typography';
 
 export const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.photosBackground,
+    backgroundColor: colors.darkGreen,
   },
   title: {
     ...typography.sectionTitle,
