@@ -1,6 +1,7 @@
 import {StyleSheet} from 'react-native';
 import {colors} from '../../themes/colors';
 import fonts from '../../themes/fonts';
+import metrics from '../../themes/metrics';
 import typography from '../../themes/typography';
 
 export const styles = StyleSheet.create({
@@ -11,7 +12,7 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.iOSnavBarBackground,
   },
   button: {
-    marginVertical: 20,
+    marginVertical: metrics.scale(20),
   },
   buttonText: {
     ...typography.mediumText,

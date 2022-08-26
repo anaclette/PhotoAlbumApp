@@ -9,8 +9,8 @@ export const styles = StyleSheet.create({
     flexDirection: 'row-reverse',
     alignItems: 'center',
     borderBottomWidth: 2,
-    borderColor: 'rgba(255,255,255,0.5)',
-    marginHorizontal: 40,
+    borderColor: colors.gray,
+    marginHorizontal: metrics.scale(40),
     justifyContent: 'space-between',
   },
   title: {

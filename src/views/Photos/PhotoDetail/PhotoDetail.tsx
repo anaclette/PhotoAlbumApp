@@ -3,14 +3,12 @@ import React from 'react';
 import {Text, StyleSheet, SafeAreaView, Button, Image} from 'react-native';
 import {capitalizeFirstLetter} from '../../../utils/stringUtils';
 import {RootStackParams} from '../../../navigator/StackNavigator';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {styles} from './photoDetail.style';
 
 interface Props extends StackScreenProps<RootStackParams, 'PhotoDetail'> {}
 
 const PhotoDetail = ({route, navigation}: Props) => {
   const {title, thumbnailUrl} = route.params;
-  // const insets = useSafeAreaInsets();
 
   return (
     <>

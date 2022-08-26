@@ -2,6 +2,7 @@ export const colors = {
   inactive: '#9899a6',
   iOSnavBarBackground: '#2f4858',
   white: 'rgba(255,255,255,0.9)',
+  gray: 'rgba(255,255,255,0.5)',
   darkContrast: '#102542',
   androidTabPress: 'purple',
   androidActiveTab: '#900',
