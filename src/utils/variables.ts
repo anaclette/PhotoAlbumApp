@@ -13,7 +13,7 @@ export const copies = {
     LOG_OUT: 'Log out',
     DIFF_ACCOUNT: 'Sign with a different account.',
     WRONG_USER_INPUT: {
-      LENGTH: 'Username must be at least 5 characters long.',
+      LENGTH: 'Username must be at least five characters long.',
       CHART_TYPE: 'Alphanumeric characters only.',
       EMPTY_FIELD: 'Username is required',
     },
