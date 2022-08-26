@@ -4,6 +4,7 @@ import useFetch from '../../utils/hooks/useFetch';
 import {Text, FlatList, SafeAreaView} from 'react-native';
 import AlbumItem from '../../components/AlbumItem/AlbumItem';
 import {styles} from './albums.style';
+import {Loader} from '../Loader/Loader';
 
 const Albums = () => {
   const {response, error, loading} = useFetch(
@@ -11,7 +12,7 @@ const Albums = () => {
   );
 
   if (loading) {
-    return <Text style={styles.text}>Loading...</Text>;
+    return <Loader />;
   }
   if (error) {
     return <Text style={styles.text}>{`Oops, ${JSON.stringify(error)}`}</Text>;

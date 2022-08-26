@@ -6,6 +6,7 @@ import PhotoItem from '../../components/PhotoItem/PhotoItem';
 import {StackScreenProps} from '@react-navigation/stack';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {RootStackParams} from '../../navigator/StackNavigator';
+import {Loader} from '../Loader/Loader';
 import {styles} from './photos.style';
 
 interface Props extends StackScreenProps<RootStackParams, 'Photos'> {}
@@ -16,7 +17,7 @@ const Photos = ({navigation}: Props) => {
   );
 
   if (loading) {
-    return <Text style={styles.text}>Loading...</Text>;
+    return <Loader />;
   }
   if (error) {
     return <Text style={styles.text}>{`Oops, ${JSON.stringify(error)}`}</Text>;
