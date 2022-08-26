@@ -1,7 +1,7 @@
 import React from 'react';
 import {API_HOST, copies, ENDPOINTS} from '../../utils/variables';
 import useFetch from '../../utils/hooks/useFetch';
-import {Text, StyleSheet, FlatList, SafeAreaView, View} from 'react-native';
+import {Text, FlatList, SafeAreaView, View} from 'react-native';
 import PhotoItem from '../../components/PhotoItem/PhotoItem';
 import {StackScreenProps} from '@react-navigation/stack';
 import {TouchableOpacity} from 'react-native-gesture-handler';
