@@ -10,6 +10,8 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {AuthContext} from '../../state/Auth';
 import {Login} from '../../views/Login/Login';
 import {Home} from '../../views/Home/Home';
+import {colors} from '../../themes/colors';
+import typography from '../../themes/typography';
 
 interface Props {
   height: number;
@@ -30,27 +32,28 @@ export const Tabs = () => {
 const TabsAndroid = ({height, loggedIn}: Props) => {
   return (
     <TopTabAndroid.Navigator
-      sceneContainerStyle={{backgroundColor: '#fafafa'}}
+      // sceneContainerStyle={{backgroundColor: colors.white}}
       screenOptions={({route}) => ({
         tabBarIcon: ({focused}) => {
           return <TabIcon route={route} focused={focused} />;
         },
         tabBarStyle: {
           height: height,
-          backgroundColor: '#fafafa',
-          borderTopColor: 'deeppink',
+          backgroundColor: colors.white,
+          borderTopColor: colors.darkContrast,
           borderTopWidth: 2,
           elevation: 0,
         },
         tabBarLabelStyle: {
           fontSize: 16,
-          borderBottomColor: 'yellow',
+          borderBottomColor: colors.brightBorder,
+          borderBottomWidth: 2,
         },
-        tabBarPressColor: 'purple',
+        tabBarPressColor: colors.androidTabPress,
         tabBarShowIcon: true,
-        tabBarIndicatorStyle: {backgroundColor: 'deeppink'},
-        tabBarActiveTintColor: 'deeppink',
-        tabBarInactiveTintColor: '#9899a6',
+        tabBarIndicatorStyle: {backgroundColor: colors.darkContrast},
+        tabBarActiveTintColor: colors.darkContrast,
+        tabBarInactiveTintColor: colors.inactive,
       })}>
       {loggedIn && (
         <>
@@ -75,13 +78,13 @@ const TabsIOS = ({height, loggedIn}: Props) => {
         tabBarIcon: ({focused}) => {
           return <TabIcon isIOS route={route} focused={focused} />;
         },
-        tabBarActiveTintColor: '#fafafa',
-        tabBarInactiveTintColor: '#9899a6',
-        tabBarLabelStyle: {fontSize: 15},
+        tabBarActiveTintColor: colors.white,
+        tabBarInactiveTintColor: colors.inactive,
+        tabBarLabelStyle: {...typography.itemTitle},
         tabBarStyle: {
           height: height,
-          backgroundColor: '#2f4858',
-          borderTopColor: '#fafafa',
+          backgroundColor: colors.iOSnavBarBackground,
+          borderTopColor: colors.white,
           borderTopWidth: 2,
         },
       })}>

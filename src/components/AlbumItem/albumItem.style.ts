@@ -1,20 +1,23 @@
 import {StyleSheet} from 'react-native';
+import {colors} from '../../themes/colors';
+import metrics from '../../themes/metrics';
+import typography from '../../themes/typography';
 
 export const styles = StyleSheet.create({
   container: {
-    paddingTop: 50,
+    paddingTop: metrics.scale(23),
     flexDirection: 'row',
-    marginHorizontal: 45,
+    marginHorizontal: metrics.scale(35),
     alignItems: 'center',
   },
   title: {
-    fontSize: 20,
-    color: '#102542',
+    ...typography.itemTitle,
+    color: colors.darkContrast,
   },
 
   id: {
-    fontWeight: 'bold',
-    color: '#a44a3f',
+    ...typography.itemTitle,
+    color: colors.salmon,
     marginRight: 15,
   },
 });

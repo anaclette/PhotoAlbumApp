@@ -4,6 +4,8 @@ import {Text, View} from 'react-native';
 import {randomIcon} from '../../utils/arrayUtils';
 import {capitalizeFirstLetter} from '../../utils/stringUtils';
 import {styles} from './photoItem.style';
+import {colors} from '../../themes/colors';
+import metrics from '../../themes/metrics';
 
 const PhotoItem = ({photo}: any) => {
   const icon = useMemo(() => {
@@ -14,7 +16,11 @@ const PhotoItem = ({photo}: any) => {
       <View style={styles.container}>
         <Text style={styles.title}>{capitalizeFirstLetter(photo.title)}</Text>
         <Text>
-          <Icon color={'#93b7be'} name={`${icon}-outline`} size={30} />
+          <Icon
+            color={colors.lightBlue}
+            name={`${icon}-outline`}
+            size={metrics.scale(30)}
+          />
         </Text>
       </View>
     </>

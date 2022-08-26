@@ -1,22 +1,29 @@
 import {StyleSheet} from 'react-native';
+import {colors} from '../../themes/colors';
+import metrics from '../../themes/metrics';
+import typography from '../../themes/typography';
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
+    backgroundColor: colors.iOSnavBarBackground,
   },
   username: {
-    color: '#fafa',
+    ...typography.mediumText,
+    textAlign: 'center',
     position: 'absolute',
     top: '50%',
-    fontSize: 50,
+    fontSize: metrics.scaledFontSize(40),
   },
   buttonText: {
+    ...typography.itemTitle,
+    color: colors.white,
     marginTop: 50,
-    color: '#fafafa',
-    borderColor: 'white',
+    fontSize: metrics.scale(15),
+    borderColor: colors.cream,
     borderWidth: 2,
-    padding: 10,
+    padding: metrics.scale(10),
     borderRadius: 10,
   },
   userInputContainer: {
@@ -25,18 +32,27 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   userInput: {
-    color: '#fafafa',
-    fontSize: 30,
+    ...typography.itemTitle,
+    color: colors.white,
   },
   warningText: {
-    color: 'white',
+    color: colors.white,
+    ...typography.itemTitle,
+    fontSize: metrics.scaledFontSize(15),
   },
   textInput: {
-    backgroundColor: 'white',
+    ...typography.itemTitle,
+    backgroundColor: colors.white,
+    color: colors.darkContrast,
     position: 'absolute',
     top: '50%',
     width: '50%',
-    padding: 10,
+    padding: metrics.scale(10),
     borderRadius: 10,
+  },
+  warningContainer: {
+    justifyContent: 'center',
+    height: metrics.scale(45),
+    marginHorizontal: metrics.scale(15),
   },
 });

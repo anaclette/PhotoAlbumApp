@@ -1,4 +1,7 @@
 import {StyleSheet} from 'react-native';
+import {colors} from '../../themes/colors';
+import metrics from '../../themes/metrics';
+import typography from '../../themes/typography';
 
 export const styles = StyleSheet.create({
   container: {
@@ -11,10 +14,11 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   title: {
-    width: '85%',
-    marginVertical: 20,
+    ...typography.itemTitle,
+    width: metrics.scale(75 * 3),
+    marginVertical: metrics.scale(15),
     textAlign: 'right',
-    fontSize: 20,
-    color: '#f1fffa',
+    fontSize: metrics.scaledFontSize(16),
+    color: colors.white,
   },
 });

@@ -1,22 +1,22 @@
 import {StyleSheet} from 'react-native';
+import {colors} from '../../themes/colors';
+import metrics from '../../themes/metrics';
+import typography from '../../themes/typography';
 
 export const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#565554',
+    backgroundColor: colors.photosBackground,
   },
   title: {
-    fontSize: 50,
-    color: '#93b7be',
-    letterSpacing: 1.2,
-    fontWeight: 'bold',
+    ...typography.sectionTitle,
+    color: colors.lightBlue,
     textAlign: 'center',
-    height: 70,
   },
   list: {
-    paddingTop: 10,
+    paddingTop: metrics.scaleVertical(10),
   },
   text: {
-    fontSize: 15,
-    color: '#93b7be',
+    fontSize: metrics.scaledFontSize(15),
+    color: colors.lightBlue,
   },
 });

@@ -1,26 +1,23 @@
 import {StyleSheet} from 'react-native';
+import {colors} from '../../themes/colors';
+import typography from '../../themes/typography';
 
 export const styles = StyleSheet.create({
-  container: {backgroundColor: '#b3a394'},
+  container: {backgroundColor: colors.albumsBackground},
   title: {
-    fontSize: 50,
-    color: '#a44a3f',
-    letterSpacing: 1.2,
-    fontWeight: 'bold',
+    ...typography.sectionTitle,
+    color: colors.salmon,
     textAlign: 'center',
-    height: 70,
   },
   shadowProp: {
-    shadowColor: '#fff',
-    shadowOffset: {width: -4, height: 6},
+    shadowColor: colors.white,
+    shadowOffset: {width: -4, height: 8},
     shadowOpacity: 0.8,
     shadowRadius: 3,
   },
-  list: {
-    paddingTop: 10,
-  },
+  list: {},
   text: {
     fontSize: 15,
-    color: '#fafafa',
+    color: colors.white,
   },
 });
