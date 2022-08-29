@@ -1,19 +1,31 @@
-import React from 'react';
+import React, {useCallback, useState} from 'react';
 import {API_HOST, copies, ENDPOINTS} from '../../utils/variables';
 import useFetch from '../../utils/hooks/useFetch';
-import {Text, FlatList, SafeAreaView, View} from 'react-native';
+import {Text, FlatList, SafeAreaView, View, RefreshControl} from 'react-native';
 import AlbumItem from '../../components/AlbumItem/AlbumItem';
 import {styles} from './albums.style';
 import {Loader} from '../Loader/Loader';
+import {wait} from '../../utils/stringUtils';
 
 const Albums = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const {response, error, loading} = useFetch(
     `${API_HOST}/${ENDPOINTS.ALBUMS}`,
   );
+  const loader = loading || isLoading;
+
+  const onRefresh = useCallback(() => {
+    setIsLoading(true);
+    wait(2000).then(() => setIsLoading(false));
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
-      {loading ? (
+      <Text style={[styles.title, styles.shadowProp]}>
+        {copies.ALBUMS_TITLE}
+      </Text>
+      {loader ? (
         <Loader />
       ) : error ? (
         <View style={styles.errorContainer}>
@@ -21,11 +33,10 @@ const Albums = () => {
         </View>
       ) : (
         <View style={styles.list}>
-          <Text style={[styles.title, styles.shadowProp]}>
-            {copies.ALBUMS_TITLE}
-          </Text>
-
           <FlatList
+            refreshControl={
+              <RefreshControl refreshing={isLoading} onRefresh={onRefresh} />
+            }
             contentContainerStyle={styles.contentContainerStyle}
             numColumns={2}
             data={response}

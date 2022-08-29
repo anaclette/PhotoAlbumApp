@@ -49,3 +49,7 @@ export const getIconName = (route: {name: string}) => {
   }
   return iconName;
 };
+
+export const wait = (timeout: number) => {
+  return new Promise(resolve => setTimeout(resolve, timeout));
+};
