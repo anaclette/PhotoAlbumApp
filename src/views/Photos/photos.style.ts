@@ -6,6 +6,11 @@ import typography from '../../themes/typography';
 export const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.darkGreen,
+    flex: 1,
+  },
+  loadingBackground: {
+    backgroundColor: colors.lightLoader,
+    flex: 1,
   },
   title: {
     ...typography.sectionTitle,
@@ -15,8 +20,14 @@ export const styles = StyleSheet.create({
   list: {
     paddingTop: metrics.scaleVertical(10),
   },
-  text: {
-    fontSize: metrics.scaledFontSize(15),
-    color: colors.lightBlue,
+  errorContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  errorMessage: {
+    fontSize: metrics.scaledFontSize(25),
+    color: colors.white,
+    marginHorizontal: metrics.scale(5),
   },
 });
