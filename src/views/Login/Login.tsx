@@ -1,5 +1,12 @@
 import React, {useContext, useState} from 'react';
-import {TouchableHighlight, Text, TextInput, View} from 'react-native';
+import {
+  TouchableHighlight,
+  Text,
+  TextInput,
+  View,
+  Platform,
+  useWindowDimensions,
+} from 'react-native';
 import {AuthContext} from '../../state/Auth';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {copies} from '../../utils/variables';
@@ -16,6 +23,7 @@ export const Login = () => {
   const [userInput, setUserInput] = useState('');
   const [emptyField, setEmptyField] = useState(false);
   const {isLoggedIn, username} = authState;
+  const {height} = useWindowDimensions();
 
   return (
     <SafeAreaView style={styles.container}>
@@ -30,7 +38,11 @@ export const Login = () => {
             <Text style={styles.buttonText}>{copies.LOGIN_SCREEN.LOG_OUT}</Text>
           </TouchableHighlight>
 
-          <View style={styles.userInputContainer}>
+          <View
+            style={[
+              styles.userInputContainer,
+              {paddingBottom: Platform.OS === 'ios' ? 0 : height / 10},
+            ]}>
             <Text style={styles.userInput}>
               {handleUserMessage(username!, true)}
             </Text>
