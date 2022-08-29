@@ -17,7 +17,7 @@ const PhotoItem = ({photo}: any) => {
         <Text style={styles.title}>{capitalizeFirstLetter(photo.title)}</Text>
         <Text>
           <Icon
-            color={colors.lightBlue}
+            color={colors.purple}
             name={`${icon}-outline`}
             size={metrics.scale(30)}
           />

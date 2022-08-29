@@ -5,16 +5,12 @@ import typography from '../../themes/typography';
 
 export const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.darkGreen,
-    flex: 1,
-  },
-  loadingBackground: {
-    backgroundColor: colors.lightLoader,
+    backgroundColor: colors.palePink,
     flex: 1,
   },
   title: {
     ...typography.sectionTitle,
-    color: colors.lightBlue,
+    color: colors.purple,
     textAlign: 'center',
   },
   list: {
