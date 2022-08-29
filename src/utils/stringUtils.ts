@@ -20,6 +20,10 @@ export const checkIfEmpty = (
   }
 };
 
+export const checkIndexIsEven = (n: number) => {
+  return n % 2 == 0;
+};
+
 export const validateUserInput = (input: string) => {
   const acceptedValue = /^[a-z0-9]+$/i;
   return acceptedValue.test(input) == false;

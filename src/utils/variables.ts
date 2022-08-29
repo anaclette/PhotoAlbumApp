@@ -18,4 +18,5 @@ export const copies = {
       EMPTY_FIELD: 'Username is required',
     },
   },
+  FAILED_TO_FETCH: 'Oops, something went wrong.\nPlease try again.',
 };
