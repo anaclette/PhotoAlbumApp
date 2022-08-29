@@ -25,7 +25,7 @@ export const Login = () => {
 
           <TouchableHighlight
             activeOpacity={0.8}
-            underlayColor={colors.iOSnavBarBackground}
+            underlayColor={colors.blueBackground}
             onPress={() => signOut(!isLoggedIn)}>
             <Text style={styles.buttonText}>{copies.LOGIN_SCREEN.LOG_OUT}</Text>
           </TouchableHighlight>
@@ -36,7 +36,7 @@ export const Login = () => {
             </Text>
             <TouchableHighlight
               activeOpacity={0.8}
-              underlayColor={colors.iOSnavBarBackground}
+              underlayColor={colors.blueBackground}
               onPress={() => signOut(!isLoggedIn)}>
               <Text style={styles.buttonText}>
                 {copies.LOGIN_SCREEN.DIFF_ACCOUNT}
@@ -72,7 +72,7 @@ export const Login = () => {
 
           <TouchableHighlight
             activeOpacity={0.8}
-            underlayColor={colors.iOSnavBarBackground}
+            underlayColor={colors.blueBackground}
             onPress={() => signIn(userInput)}
             disabled={userInput.length < 5 || validateUserInput(userInput)}>
             <Text style={styles.buttonText}>{copies.LOGIN_SCREEN.SIGN_IN}</Text>

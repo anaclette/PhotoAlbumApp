@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: colors.iOSnavBarBackground,
+    backgroundColor: colors.blueBackground,
   },
   button: {
     marginVertical: metrics.scale(20),

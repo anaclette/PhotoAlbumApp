@@ -83,7 +83,7 @@ const TabsIOS = ({height, loggedIn}: Props) => {
         tabBarLabelStyle: {...typography.itemTitle},
         tabBarStyle: {
           height: height,
-          backgroundColor: colors.iOSnavBarBackground,
+          backgroundColor: colors.blueBackground,
           borderTopColor: colors.white,
           borderTopWidth: 2,
         },

@@ -6,7 +6,7 @@ import {styles} from './loader.style';
 export const Loader = () => {
   return (
     <View style={styles.container}>
-      <ActivityIndicator size="large" color={colors.lightLoader} />
+      <ActivityIndicator size="large" color={colors.darkContrast} />
     </View>
   );
 };
