@@ -75,6 +75,7 @@ export const Login = () => {
             autoCorrect={false}
             keyboardType="default"
             style={styles.textInput}
+            placeholderTextColor={colors.inactive}
             placeholder="username"
             onChangeText={input => {
               checkIfEmpty(input, setEmptyField);

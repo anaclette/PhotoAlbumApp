@@ -3,24 +3,32 @@ import {ParamListBase, RouteProp} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {getIconName} from '../utils/stringUtils';
 import {colors} from '../themes/colors';
+import {Platform, TextStyle} from 'react-native';
+import metrics from '../themes/metrics';
 
 interface IconProps {
   route: RouteProp<ParamListBase>;
   focused: boolean;
-  isIOS?: boolean;
+  style?: TextStyle;
 }
 
-const TabIcon = ({route, focused, isIOS}: IconProps) => {
+const TabIcon = ({route, focused, style}: IconProps) => {
+  const margins = {
+    height: metrics.screenHeight,
+    width: metrics.screenWidth,
+  };
   const iconName = getIconName(route);
+  const isiOS = Platform.OS === 'ios';
   return (
     <Icon
+      style={[margins, style]}
       name={iconName}
-      size={40}
+      size={metrics.scale(25)}
       color={
-        focused && isIOS
+        focused && isiOS
           ? colors.white
-          : focused && !isIOS
-          ? colors.androidActiveTab
+          : focused && !isiOS
+          ? colors.palePink
           : colors.inactive
       }
     />
