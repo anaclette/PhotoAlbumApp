@@ -5,19 +5,35 @@ import typography from '../../themes/typography';
 
 export const styles = StyleSheet.create({
   container: {
-    paddingTop: metrics.scale(23),
-    flexDirection: 'row',
-    marginHorizontal: metrics.scale(35),
-    alignItems: 'center',
+    marginHorizontal: metrics.scale(5),
+    marginVertical: metrics.scale(10),
+    paddingHorizontal: metrics.scale(3),
+    width: metrics.scale(150),
+    borderColor: colors.salmon,
+    borderRadius: 15,
   },
   title: {
+    flex: 1,
+    paddingHorizontal: metrics.scale(3),
+    marginVertical: metrics.scale(10),
     ...typography.itemTitle,
     color: colors.darkContrast,
   },
+  pictureItem: {
+    flex: 1,
+  },
 
-  id: {
+  icon: {
+    marginTop: metrics.scale(10),
+    alignSelf: 'flex-end',
     ...typography.itemTitle,
     color: colors.salmon,
     marginRight: 15,
+  },
+  shadowProp: {
+    shadowColor: colors.white,
+    shadowOffset: {width: 4, height: -2},
+    shadowOpacity: 0.7,
+    shadowRadius: 1,
   },
 });
