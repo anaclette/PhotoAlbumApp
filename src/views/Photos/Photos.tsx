@@ -1,10 +1,16 @@
 import React, {useCallback, useState} from 'react';
 import {API_HOST, copies, ENDPOINTS} from '../../utils/variables';
 import useFetch from '../../utils/hooks/useFetch';
-import {Text, FlatList, SafeAreaView, View, RefreshControl} from 'react-native';
+import {
+  Text,
+  FlatList,
+  SafeAreaView,
+  View,
+  RefreshControl,
+  TouchableOpacity,
+} from 'react-native';
 import PhotoItem from '../../components/PhotoItem/PhotoItem';
 import {StackScreenProps} from '@react-navigation/stack';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 import {RootStackParams} from '../../navigator/StackNavigator';
 import {Loader} from '../Loader/Loader';
 import {wait} from '../../utils/stringUtils';
