@@ -1,10 +1,10 @@
 import React from 'react';
 import {ParamListBase, RouteProp} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {getIconName} from '../utils/stringUtils';
-import {colors} from '../themes/colors';
+import {getIconName} from '../../utils/stringUtils';
+import {colors} from '../../themes/colors';
 import {Platform, TextStyle} from 'react-native';
-import metrics from '../themes/metrics';
+import metrics from '../../themes/metrics';
 
 interface IconProps {
   route: RouteProp<ParamListBase>;
@@ -12,7 +12,7 @@ interface IconProps {
   style?: TextStyle;
 }
 
-const TabIcon = ({route, focused, style}: IconProps) => {
+export const TabIcon = ({route, focused, style}: IconProps) => {
   const margins = {
     height: metrics.screenHeight,
     width: metrics.screenWidth,
@@ -34,5 +34,3 @@ const TabIcon = ({route, focused, style}: IconProps) => {
     />
   );
 };
-
-export default TabIcon;

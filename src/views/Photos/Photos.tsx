@@ -9,16 +9,16 @@ import {
   RefreshControl,
   TouchableOpacity,
 } from 'react-native';
-import PhotoItem from '../../components/PhotoItem/PhotoItem';
+import PhotoItem from '../../components/PhotoItem';
 import {StackScreenProps} from '@react-navigation/stack';
-import {RootStackParams} from '../../navigator/StackNavigator';
+import {RootStackParams} from '../../navigation/StackNavigator';
 import {Loader} from '../Loader/Loader';
 import {wait} from '../../utils/stringUtils';
 import {styles} from './photos.style';
 
 interface Props extends StackScreenProps<RootStackParams, 'Photos'> {}
 
-const Photos = ({navigation}: Props) => {
+export const Photos = ({navigation}: Props) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const {response, error, loading} = useFetch(
@@ -69,5 +69,3 @@ const Photos = ({navigation}: Props) => {
     </SafeAreaView>
   );
 };
-
-export default Photos;

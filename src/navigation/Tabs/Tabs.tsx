@@ -1,8 +1,8 @@
 import React, {useContext} from 'react';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 
-import Albums from '../../views/Albums/Albums';
-import Photos from '../../views/Photos/Photos';
+import Albums from '../../views/Albums';
+import Photos from '../../views/Photos';
 import {Platform} from 'react-native';
 import TabIcon from '../../components/TabIcon';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';

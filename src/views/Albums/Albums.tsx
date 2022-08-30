@@ -2,12 +2,12 @@ import React, {useCallback, useState} from 'react';
 import {API_HOST, copies, ENDPOINTS} from '../../utils/variables';
 import useFetch from '../../utils/hooks/useFetch';
 import {Text, FlatList, SafeAreaView, View, RefreshControl} from 'react-native';
-import AlbumItem from '../../components/AlbumItem/AlbumItem';
+import AlbumItem from '../../components/AlbumItem';
 import {styles} from './albums.style';
 import {Loader} from '../Loader/Loader';
 import {wait} from '../../utils/stringUtils';
 
-const Albums = () => {
+export const Albums = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const {response, error, loading} = useFetch(
@@ -49,5 +49,3 @@ const Albums = () => {
     </SafeAreaView>
   );
 };
-
-export default Albums;

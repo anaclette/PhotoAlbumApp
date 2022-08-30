@@ -8,7 +8,7 @@ import {capitalizeFirstLetter, checkIndexIsEven} from '../../utils/stringUtils';
 import {styles} from './albumItem.style';
 import {customBorder} from '../../themes/globalStyles';
 
-const AlbumItem = ({album, index}: any) => {
+export const AlbumItem = ({album, index}: any) => {
   const isEven = checkIndexIsEven(index);
   return (
     <View
@@ -33,5 +33,3 @@ const AlbumItem = ({album, index}: any) => {
     </View>
   );
 };
-
-export default AlbumItem;

@@ -7,7 +7,7 @@ import {styles} from './photoItem.style';
 import {colors} from '../../themes/colors';
 import metrics from '../../themes/metrics';
 
-const PhotoItem = ({photo}: any) => {
+export const PhotoItem = ({photo}: any) => {
   const icon = useMemo(() => {
     return randomIcon();
   }, [photo]);
@@ -26,5 +26,3 @@ const PhotoItem = ({photo}: any) => {
     </>
   );
 };
-
-export default PhotoItem;

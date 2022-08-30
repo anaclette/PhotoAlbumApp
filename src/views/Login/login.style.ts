@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
     marginTop: 50,
     fontSize: metrics.scale(15),
     borderColor: colors.cream,
-    borderWidth: 2,
+    borderWidth: StyleSheet.hairlineWidth,
     padding: metrics.scale(10),
     borderRadius: 10,
   },

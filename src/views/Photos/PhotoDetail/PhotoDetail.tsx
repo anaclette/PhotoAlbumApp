@@ -9,7 +9,7 @@ import {
   RefreshControl,
 } from 'react-native';
 import {capitalizeFirstLetter, wait} from '../../../utils/stringUtils';
-import {RootStackParams} from '../../../navigator/StackNavigator';
+import {RootStackParams} from '../../../navigation/StackNavigator';
 import {styles} from './photoDetail.style';
 import Icon from 'react-native-vector-icons/Ionicons';
 import metrics from '../../../themes/metrics';
@@ -18,7 +18,7 @@ import {Loader} from '../../Loader/Loader';
 
 interface Props extends StackScreenProps<RootStackParams, 'PhotoDetail'> {}
 
-const PhotoDetail = ({route, navigation}: Props) => {
+export const PhotoDetail = ({route, navigation}: Props) => {
   const [refreshing, setRefreshing] = useState(false);
   const {title, thumbnailUrl} = route.params;
 
@@ -53,5 +53,3 @@ const PhotoDetail = ({route, navigation}: Props) => {
     </>
   );
 };
-
-export default PhotoDetail;
