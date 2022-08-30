@@ -1,14 +1,14 @@
 import React, {useContext} from 'react';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
+import {Platform} from 'react-native';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {AuthContext} from '../../state/Auth';
 
 import Albums from '../../views/Albums';
 import Photos from '../../views/Photos';
-import {Platform} from 'react-native';
 import TabIcon from '../../components/TabIcon';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {AuthContext} from '../../state/Auth';
-import {Login} from '../../views/Login/Login';
-import {Home} from '../../views/Home/Home';
+import Login from '../../views/Login';
+import Home from '../../views/Home';
 import {colors} from '../../themes/colors';
 import {styles} from './tabs.style';
 

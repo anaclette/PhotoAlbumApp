@@ -1,10 +1,10 @@
 import React, {useCallback, useState} from 'react';
 import {API_HOST, copies, ENDPOINTS} from '../../utils/variables';
-import useFetch from '../../utils/hooks/useFetch';
 import {Text, FlatList, SafeAreaView, View, RefreshControl} from 'react-native';
+import useFetch from '../../utils/hooks/useFetch';
 import AlbumItem from '../../components/AlbumItem';
+import Loader from '../Loader';
 import {styles} from './albums.style';
-import {Loader} from '../Loader/Loader';
 import {wait} from '../../utils/stringUtils';
 
 export const Albums = () => {

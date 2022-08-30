@@ -14,7 +14,7 @@ import {styles} from './photoDetail.style';
 import Icon from 'react-native-vector-icons/Ionicons';
 import metrics from '../../../themes/metrics';
 import {colors} from '../../../themes/colors';
-import {Loader} from '../../Loader/Loader';
+import Loader from '../../Loader';
 
 interface Props extends StackScreenProps<RootStackParams, 'PhotoDetail'> {}
 

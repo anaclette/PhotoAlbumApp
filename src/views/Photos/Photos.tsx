@@ -12,7 +12,7 @@ import {
 import PhotoItem from '../../components/PhotoItem';
 import {StackScreenProps} from '@react-navigation/stack';
 import {RootStackParams} from '../../navigation/StackNavigator';
-import {Loader} from '../Loader/Loader';
+import Loader from '../Loader';
 import {wait} from '../../utils/stringUtils';
 import {styles} from './photos.style';
 
