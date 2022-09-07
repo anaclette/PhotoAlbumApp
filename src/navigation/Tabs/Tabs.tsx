@@ -48,7 +48,7 @@ export const Tabs = () => {
               elevation: 0,
             }
           : {
-              height: insets.top * 2.3,
+              height: insets.top + 70,
               backgroundColor: colors.blueBackground,
               borderTopColor: colors.white,
               borderTopWidth: 2,
