@@ -1,10 +1,5 @@
 import React, {useMemo} from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
-import Animated, {
-  Extrapolate,
-  interpolate,
-  useAnimatedStyle,
-} from 'react-native-reanimated';
 import {Text, TouchableOpacity, View} from 'react-native';
 import {StackScreenProps} from '@react-navigation/stack';
 import {RootStackParams} from '../../navigation/StackNavigator';
