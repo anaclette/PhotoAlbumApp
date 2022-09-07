@@ -19,10 +19,17 @@ export const styles = StyleSheet.create({
     fontSize: metrics.scale(26),
     textAlign: 'center',
   },
+  imageContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: ITEM_SIZE + metrics.scale(60),
+  },
   image: {
     width: ITEM_SIZE,
     height: ITEM_SIZE,
     borderRadius: 15,
+    justifyContent: 'center',
   },
   backButton: {
     flexDirection: 'row',

@@ -6,12 +6,9 @@ import typography from '../../themes/typography';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'row-reverse',
-    alignItems: 'center',
     borderBottomWidth: 2,
     borderColor: colors.gray,
     marginHorizontal: metrics.scale(40),
-    justifyContent: 'space-between',
   },
   title: {
     ...typography.itemTitle,
@@ -20,5 +17,10 @@ export const styles = StyleSheet.create({
     textAlign: 'right',
     fontSize: metrics.scaledFontSize(16),
     color: colors.white,
+  },
+  button: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
 });
