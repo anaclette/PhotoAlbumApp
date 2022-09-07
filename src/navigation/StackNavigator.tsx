@@ -6,7 +6,7 @@ import PhotoDetail from '../views/Photos/PhotoDetail';
 export type RootStackParams = {
   Photos: {id: number; name: string};
   Albums: {id: number; name: string};
-  Tabs: undefined;
+  Tabs: () => JSX.Element;
   PhotoDetail: {
     id: number;
     albumId: number;
