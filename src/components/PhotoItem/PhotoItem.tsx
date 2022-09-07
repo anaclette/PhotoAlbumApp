@@ -7,7 +7,11 @@ import {styles} from './photoItem.style';
 import {colors} from '../../themes/colors';
 import metrics from '../../themes/metrics';
 
-export const PhotoItem = ({photo}: any) => {
+interface Props {
+  photo: {title: string};
+}
+
+export const PhotoItem = ({photo}: Props) => {
   const icon = useMemo(() => {
     return randomIcon();
   }, [photo]);

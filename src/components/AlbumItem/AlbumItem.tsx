@@ -8,7 +8,14 @@ import {capitalizeFirstLetter, checkIndexIsEven} from '../../utils/stringUtils';
 import {styles} from './albumItem.style';
 import {customBorder} from '../../themes/globalStyles';
 
-export const AlbumItem = ({album, index}: any) => {
+interface Props {
+  album: {
+    title: string;
+  };
+  index: number;
+}
+
+export const AlbumItem = ({album, index}: Props) => {
   const isEven = checkIndexIsEven(index);
   return (
     <View

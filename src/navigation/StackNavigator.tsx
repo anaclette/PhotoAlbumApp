@@ -4,7 +4,8 @@ import Tabs from './Tabs';
 import PhotoDetail from '../views/Photos/PhotoDetail';
 
 export type RootStackParams = {
-  Photos: undefined;
+  Photos: {id: number; name: string};
+  Albums: {id: number; name: string};
   Tabs: undefined;
   PhotoDetail: {
     id: number;

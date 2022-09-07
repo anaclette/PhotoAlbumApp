@@ -5,8 +5,9 @@ import {Pressable, Text} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {copies} from '../../utils/variables';
 import {styles} from './home.style';
+import {RootStackParams} from '../../navigation/StackNavigator';
 
-interface Props extends StackScreenProps<any, any> {}
+interface Props extends StackScreenProps<RootStackParams> {}
 
 export const Home = ({navigation}: Props) => {
   return (
