@@ -7,6 +7,10 @@ import Loader from '../Loader';
 import {styles} from './albums.style';
 import {wait} from '../../utils/stringUtils';
 
+interface Props {
+  title: string;
+}
+
 export const Albums = () => {
   const [isLoading, setIsLoading] = useState(false);
 
@@ -19,6 +23,13 @@ export const Albums = () => {
     setIsLoading(true);
     wait(2000).then(() => setIsLoading(false));
   }, []);
+
+  const renderItem = useCallback(
+    ({item, index}: {item: Props; index: number}) => {
+      return <AlbumItem index={index} album={item} />;
+    },
+    [],
+  );
 
   return (
     <SafeAreaView style={styles.container}>
@@ -40,9 +51,7 @@ export const Albums = () => {
             contentContainerStyle={styles.contentContainerStyle}
             numColumns={2}
             data={response}
-            renderItem={({item, index}) => (
-              <AlbumItem index={index} album={item} />
-            )}
+            renderItem={renderItem}
           />
         </View>
       )}
