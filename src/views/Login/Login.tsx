@@ -4,7 +4,6 @@ import {
   Text,
   TextInput,
   View,
-  Platform,
   useWindowDimensions,
 } from 'react-native';
 import {AuthContext} from '../../state/Auth';
@@ -41,7 +40,9 @@ export const Login = () => {
           <View
             style={[
               styles.userInputContainer,
-              {paddingBottom: Platform.OS === 'ios' ? 0 : height / 10},
+              {
+                paddingBottom: height / 10,
+              },
             ]}>
             <Text style={styles.userInput}>
               {handleUserMessage(username!, true)}
