@@ -9,7 +9,7 @@ import {styles} from './photoItem.style';
 import {colors} from '../../themes/colors';
 import metrics from '../../themes/metrics';
 
-interface Props extends StackScreenProps<RootStackParams, 'Photos'> {
+interface Props extends StackScreenProps<RootStackParams> {
   photo: {title: string};
   index: number;
 }
