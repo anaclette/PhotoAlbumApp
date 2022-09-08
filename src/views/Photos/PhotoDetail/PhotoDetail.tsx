@@ -1,5 +1,5 @@
 import {StackScreenProps} from '@react-navigation/stack';
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   Text,
   SafeAreaView,
@@ -7,6 +7,7 @@ import {
   Pressable,
   ScrollView,
   RefreshControl,
+  Animated,
 } from 'react-native';
 import {capitalizeFirstLetter, wait} from '../../../utils/stringUtils';
 import {RootStackParams} from '../../../navigation/StackNavigator';
@@ -20,12 +21,21 @@ interface Props extends StackScreenProps<RootStackParams, 'PhotoDetail'> {}
 
 export const PhotoDetail = ({route, navigation}: Props) => {
   const [refreshing, setRefreshing] = useState(false);
+  const fadeAnim = useRef(new Animated.Value(0)).current;
   const {title, thumbnailUrl} = route.params;
 
   const onRefresh = () => {
     setRefreshing(true);
     wait(2000).then(() => setRefreshing(false));
   };
+
+  useEffect(() => {
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 2000,
+      useNativeDriver: true,
+    }).start();
+  }, [fadeAnim]);
 
   return (
     <>
@@ -46,7 +56,10 @@ export const PhotoDetail = ({route, navigation}: Props) => {
               <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
             }>
             <Text style={styles.title}>{capitalizeFirstLetter(title)}</Text>
-            <Image source={{uri: thumbnailUrl}} style={styles.image} />
+            <Animated.View
+              style={{...styles.imageContainer, opacity: fadeAnim}}>
+              <Image source={{uri: thumbnailUrl}} style={styles.image} />
+            </Animated.View>
           </ScrollView>
         )}
       </SafeAreaView>
