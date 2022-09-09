@@ -5,9 +5,9 @@ import {
   TextInput,
   View,
   useWindowDimensions,
+  SafeAreaView,
 } from 'react-native';
 import {AuthContext} from '../../state/Auth';
-import {SafeAreaView} from 'react-native-safe-area-context';
 import {copies} from '../../utils/variables';
 import {
   handleUserMessage,
@@ -92,6 +92,7 @@ export const Login = () => {
             </Text>
           </View>
           <TextInput
+            autoFocus={true}
             accessible={true}
             accessibilityLabel="username input"
             autoCorrect={false}

@@ -1,8 +1,6 @@
 import React from 'react';
 import {StackScreenProps} from '@react-navigation/stack';
-import {Pressable, Text} from 'react-native';
-
-import {SafeAreaView} from 'react-native-safe-area-context';
+import {Pressable, Text, SafeAreaView} from 'react-native';
 import {copies} from '../../utils/variables';
 import {styles} from './home.style';
 import {RootStackParams} from '../../navigation/StackNavigator';
