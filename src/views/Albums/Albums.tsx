@@ -1,22 +1,20 @@
-import React, {useCallback, useState} from 'react';
-import {API_HOST, copies, ENDPOINTS} from '../../utils/variables';
+import React, {useCallback, useState, useEffect} from 'react';
+import {copies} from '../../utils/variables';
 import {Text, FlatList, SafeAreaView, View, RefreshControl} from 'react-native';
-import useFetch from '../../utils/hooks/useFetch';
 import AlbumItem from '../../components/AlbumItem';
 import Loader from '../Loader';
 import {styles} from './albums.style';
 import {wait} from '../../utils/stringUtils';
-
-interface Props {
-  title: string;
-}
+import {useSelector} from 'react-redux';
+import {Album, RootState} from '../../types/types';
+import {getAlbums} from '../../state/thunks';
 
 export const Albums = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const loading = useSelector((state: RootState) => state.albums.loading);
+  const data = useSelector((state: RootState) => state.albums.data);
+  const error = useSelector((state: RootState) => state.albums.error);
 
-  const {response, error, loading} = useFetch(
-    `${API_HOST}/${ENDPOINTS.ALBUMS}`,
-  );
   const loader = loading || isLoading;
 
   const onRefresh = useCallback(() => {
@@ -24,8 +22,12 @@ export const Albums = () => {
     wait(2000).then(() => setIsLoading(false));
   }, []);
 
+  useEffect(() => {
+    getAlbums();
+  }, []);
+
   const renderItem = useCallback(
-    ({item, index}: {item: Props; index: number}) => {
+    ({item, index}: {item: Album; index: number}) => {
       return <AlbumItem index={index} album={item} />;
     },
     [],
@@ -50,7 +52,7 @@ export const Albums = () => {
             }
             contentContainerStyle={styles.contentContainerStyle}
             numColumns={2}
-            data={response}
+            data={data}
             renderItem={renderItem}
           />
         </View>

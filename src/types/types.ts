@@ -10,7 +10,7 @@ export type Photo = {
   thumbnailUrl: string;
 };
 
-type Album = {
+export type Album = {
   title: string;
   id: number;
   userId: number;
