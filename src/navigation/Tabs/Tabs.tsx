@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import {Platform} from 'react-native';
+import {Platform, TouchableOpacity} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {AuthContext} from '../../state/Auth';
 
@@ -11,6 +11,7 @@ import Login from '../../views/Login';
 import Home from '../../views/Home';
 import {colors} from '../../themes/colors';
 import {styles} from './tabs.style';
+import {getIconName} from '../../utils/stringUtils';
 
 export const Tabs = () => {
   const insets = useSafeAreaInsets();
@@ -39,7 +40,15 @@ export const Tabs = () => {
       tabBarPosition={platformIsIos ? 'bottom' : 'top'}
       screenOptions={({route}) => ({
         tabBarIcon: ({focused}) => {
-          return <TabIcon route={route} focused={focused} />;
+          const {label} = getIconName(route);
+          return (
+            <TouchableOpacity
+              accessibilityRole="button"
+              accessibilityState={focused ? {selected: true} : {}}
+              accessibilityLabel={label}>
+              <TabIcon route={route} focused={focused} />
+            </TouchableOpacity>
+          );
         },
         tabBarStyle: !platformIsIos
           ? {

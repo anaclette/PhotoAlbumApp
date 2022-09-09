@@ -13,6 +13,8 @@ export const Home = ({navigation}: Props) => {
   return (
     <SafeAreaView style={styles.container}>
       <Pressable
+        accessible={true}
+        accessibilityLabel="Photos"
         style={styles.button}
         onPress={() =>
           navigation.navigate('Photos', {
@@ -24,6 +26,8 @@ export const Home = ({navigation}: Props) => {
       </Pressable>
 
       <Pressable
+        accessible={true}
+        accessibilityLabel="Albums"
         style={styles.button}
         onPress={() =>
           navigation.navigate('Albums', {

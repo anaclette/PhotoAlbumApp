@@ -21,6 +21,9 @@ export const PhotoItem = ({photo, index, navigation}: Props) => {
   return (
     <View key={index} style={styles.container}>
       <TouchableOpacity
+        accessibilityRole="button"
+        accessible={true}
+        accessibilityLabel={`Photo: ${photo.title}`}
         style={styles.button}
         onPress={() =>
           navigation.navigate('PhotoDetail', {
@@ -32,6 +35,7 @@ export const PhotoItem = ({photo, index, navigation}: Props) => {
           })
         }>
         <Icon
+          accessibilityRole="image"
           color={colors.purple}
           name={`${icon}-outline`}
           size={metrics.scale(30)}

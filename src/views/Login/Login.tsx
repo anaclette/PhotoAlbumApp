@@ -28,9 +28,16 @@ export const Login = () => {
     <SafeAreaView style={styles.container}>
       {isLoggedIn ? (
         <>
-          <Text style={styles.username}>{handleUserMessage(username!)}</Text>
+          <Text
+            accessible={true}
+            accessibilityHint={copies.ACCESSIBILITY_HINT.USERNAME_VALIDATION}
+            style={styles.username}>
+            {handleUserMessage(username!)}
+          </Text>
 
           <TouchableHighlight
+            accessible={true}
+            accessibilityLabel={copies.LOGIN_SCREEN.LOG_OUT}
             activeOpacity={0.8}
             underlayColor={colors.blueBackground}
             onPress={() => signOut(!isLoggedIn)}>
@@ -48,6 +55,8 @@ export const Login = () => {
               {handleUserMessage(username!, true)}
             </Text>
             <TouchableHighlight
+              accessible={true}
+              accessibilityLabel={copies.LOGIN_SCREEN.DIFF_ACCOUNT}
               activeOpacity={0.8}
               underlayColor={colors.blueBackground}
               onPress={() => signOut(!isLoggedIn)}>
@@ -60,19 +69,27 @@ export const Login = () => {
       ) : (
         <>
           <View style={styles.warningContainer}>
-            <Text style={styles.warningText}>
+            <Text
+              accessible={true}
+              accessibilityHint={copies.ACCESSIBILITY_HINT.USERNAME_LENGTH}
+              style={styles.warningText}>
               {userInput !== '' &&
                 userInput.length < 5 &&
                 copies.LOGIN_SCREEN.WRONG_USER_INPUT.LENGTH}
               {emptyField && copies.LOGIN_SCREEN.WRONG_USER_INPUT.EMPTY_FIELD}
             </Text>
-            <Text style={styles.warningText}>
+            <Text
+              accessible={true}
+              accessibilityHint={copies.ACCESSIBILITY_HINT.USERNAME_CHARTS_TYPE}
+              style={styles.warningText}>
               {userInput !== '' &&
                 validateUserInput(userInput) &&
                 copies.LOGIN_SCREEN.WRONG_USER_INPUT.CHART_TYPE}
             </Text>
           </View>
           <TextInput
+            accessible={true}
+            accessibilityLabel="username input"
             autoCorrect={false}
             keyboardType="default"
             style={styles.textInput}
@@ -85,6 +102,8 @@ export const Login = () => {
           />
 
           <TouchableHighlight
+            accessible={true}
+            accessibilityLabel={copies.LOGIN_SCREEN.SIGN_IN}
             activeOpacity={0.8}
             underlayColor={colors.blueBackground}
             onPress={() => signIn(userInput)}

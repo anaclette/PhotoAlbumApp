@@ -17,10 +17,11 @@ export const TabIcon = ({route, focused, style}: IconProps) => {
     height: metrics.screenHeight,
     width: metrics.screenWidth,
   };
-  const iconName = getIconName(route);
+  const {iconName} = getIconName(route);
   const isiOS = Platform.OS === 'ios';
   return (
     <Icon
+      accessibilityRole="image"
       style={[margins, style]}
       name={iconName}
       size={metrics.scale(25)}

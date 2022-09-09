@@ -16,6 +16,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import metrics from '../../../themes/metrics';
 import {colors} from '../../../themes/colors';
 import Loader from '../../Loader';
+import {copies} from '../../../utils/variables';
 
 interface Props extends StackScreenProps<RootStackParams, 'PhotoDetail'> {}
 
@@ -40,8 +41,14 @@ export const PhotoDetail = ({route, navigation}: Props) => {
   return (
     <>
       <SafeAreaView style={styles.container}>
-        <Pressable style={styles.backButton} onPress={() => navigation.pop()}>
+        <Pressable
+          accessible={true}
+          accessibilityLabel={copies.ACCESSIBILITY_LABEL.BACK}
+          accessibilityHint={copies.ACCESSIBILITY_LABEL.BACK_HINT}
+          style={styles.backButton}
+          onPress={() => navigation.pop()}>
           <Icon
+            accessibilityRole="image"
             size={metrics.scale(25)}
             name="arrow-back-circle-outline"
             color={colors.purple}

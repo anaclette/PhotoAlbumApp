@@ -19,6 +19,8 @@ export const AlbumItem = ({album, index}: Props) => {
   const isEven = checkIndexIsEven(index);
   return (
     <View
+      accessible={true}
+      accessibilityLabel={`Album: ${album.title}`}
       style={[
         styles.container,
         !isEven && styles.shadowProp,
@@ -28,6 +30,7 @@ export const AlbumItem = ({album, index}: Props) => {
         {isEven && (
           <Text style={styles.icon}>
             <Icon
+              accessibilityRole="image"
               color={colors.purple}
               size={metrics.scale(20)}
               name={randomIcon()}

@@ -19,4 +19,13 @@ export const copies = {
     },
   },
   FAILED_TO_FETCH: 'Oops, something went wrong.\nPlease try again.',
+  ACCESSIBILITY_HINT: {
+    USERNAME_VALIDATION: 'Verifies if current user matches logged in.',
+    USERNAME_LENGTH: 'Validates if username is longer than 4 characters.',
+    USERNAME_CHARTS_TYPE: 'Validates if username has no special characters.',
+  },
+  ACCESSIBILITY_LABEL: {
+    BACK: 'Go back',
+    BACK_HINT: 'Back to previous screen',
+  },
 };

@@ -31,23 +31,28 @@ export const validateUserInput = (input: string) => {
 
 export const getIconName = (route: {name: string}) => {
   let iconName: string = '';
+  let label: string = '';
   switch (route.name) {
     case 'Albums':
       iconName = 'camera-outline';
+      label = 'Albums';
       break;
 
     case 'Photos':
       iconName = 'images-outline';
+      label = 'Photos';
       break;
 
     case 'Home':
       iconName = 'home-outline';
+      label = 'Home';
       break;
     case 'Profile':
       iconName = 'person-outline';
+      label = 'Profile';
       break;
   }
-  return iconName;
+  return {iconName, label};
 };
 
 export const wait = (timeout: number) => {
