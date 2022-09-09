@@ -1,26 +1,23 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {UserLogin} from '../../types/types';
+import {Auth} from '../../types/types';
+import {STATE_MODULES} from '../../utils/variables';
 
-interface UserState {
-  username: UserLogin | null;
-}
-const initialState: UserState = {
+const initialState: Auth = {
   username: null,
 };
 
 const authReducer = createSlice({
-  name: 'user',
+  name: STATE_MODULES.AUTH,
   initialState,
-  reducers: {},
-  extraReducers: {
-    logIn: (state, action: PayloadAction<UserLogin>) => {
-      state.username = action.payload;
-    },
+  reducers: {
+    logIn: (state, action: PayloadAction<string>) => ({
+      ...state,
+      username: action.payload,
+    }),
     logOut: () => initialState,
-    updateUser: (state, action: PayloadAction<UserLogin>) => {
-      state.username = {...state.username, ...action.payload};
-    },
   },
 });
+
+export const {logIn, logOut} = authReducer.actions;
 
 export default authReducer.reducer;

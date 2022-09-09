@@ -1,6 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {Photos} from '../../types/types';
 import {getPhotos} from '../thunks';
+import {STATE_MODULES} from '../../utils/variables';
 
 const initialState: Photos = {
   data: [],
@@ -8,7 +9,7 @@ const initialState: Photos = {
   error: null,
 };
 const photosReducer = createSlice({
-  name: 'Photos',
+  name: STATE_MODULES.PHOTOS,
   initialState,
   reducers: {},
   extraReducers: builder => {

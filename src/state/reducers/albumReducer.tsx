@@ -1,15 +1,16 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {Album} from '../../types/types';
+import {STATE_MODULES} from '../../utils/variables';
+import {Albums} from '../../types/types';
 import {getAlbums} from '../thunks';
 
-const initialState: Album = {
+const initialState: Albums = {
   data: [],
   loading: false,
   error: null,
 };
 
 const albumReducer = createSlice({
-  name: 'Albums',
+  name: STATE_MODULES.ALBUMS,
   initialState,
   reducers: {},
   extraReducers: builder => {
