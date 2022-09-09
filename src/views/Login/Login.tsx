@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useState} from 'react';
 import {
   TouchableHighlight,
   Text,
@@ -6,7 +6,6 @@ import {
   View,
   useWindowDimensions,
 } from 'react-native';
-import {AuthContext} from '../../state/Auth';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {copies} from '../../utils/variables';
 import {
@@ -16,27 +15,28 @@ import {
 } from '../../utils/stringUtils';
 import {styles} from './login.style';
 import {colors} from '../../themes/colors';
+import {useDispatch, useSelector} from 'react-redux';
+import {logIn, logOut} from '../../state/reducers/authReducer';
+import {RootState} from '../../types/types';
 
 export const Login = () => {
-  const {signIn, authState, signOut} = useContext(AuthContext);
+  const dispatch = useDispatch();
+  const username = useSelector((state: RootState) => state.auth.username);
   const [userInput, setUserInput] = useState('');
   const [emptyField, setEmptyField] = useState(false);
-  const {isLoggedIn, username} = authState;
   const {height} = useWindowDimensions();
 
   return (
     <SafeAreaView style={styles.container}>
-      {isLoggedIn ? (
+      {username ? (
         <>
-          <Text style={styles.username}>{handleUserMessage(username!)}</Text>
-
+          <Text style={styles.username}>{handleUserMessage(username)}</Text>
           <TouchableHighlight
             activeOpacity={0.8}
             underlayColor={colors.blueBackground}
-            onPress={() => signOut(!isLoggedIn)}>
+            onPress={() => dispatch(logOut())}>
             <Text style={styles.buttonText}>{copies.LOGIN_SCREEN.LOG_OUT}</Text>
           </TouchableHighlight>
-
           <View
             style={[
               styles.userInputContainer,
@@ -45,12 +45,12 @@ export const Login = () => {
               },
             ]}>
             <Text style={styles.userInput}>
-              {handleUserMessage(username!, true)}
+              {handleUserMessage(username, true)}
             </Text>
             <TouchableHighlight
               activeOpacity={0.8}
               underlayColor={colors.blueBackground}
-              onPress={() => signOut(!isLoggedIn)}>
+              onPress={() => dispatch(logOut())}>
               <Text style={styles.buttonText}>
                 {copies.LOGIN_SCREEN.DIFF_ACCOUNT}
               </Text>
@@ -87,7 +87,7 @@ export const Login = () => {
           <TouchableHighlight
             activeOpacity={0.8}
             underlayColor={colors.blueBackground}
-            onPress={() => signIn(userInput)}
+            onPress={() => dispatch(logIn(userInput))}
             disabled={userInput.length < 5 || validateUserInput(userInput)}>
             <Text style={styles.buttonText}>{copies.LOGIN_SCREEN.SIGN_IN}</Text>
           </TouchableHighlight>
