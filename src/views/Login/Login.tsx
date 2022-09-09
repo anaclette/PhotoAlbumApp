@@ -24,6 +24,10 @@ export const Login = () => {
   const {isLoggedIn, username} = authState;
   const {height} = useWindowDimensions();
 
+  const isDisabled = () => {
+    return userInput.length < 5 || validateUserInput(userInput);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       {isLoggedIn ? (
@@ -107,7 +111,8 @@ export const Login = () => {
             activeOpacity={0.8}
             underlayColor={colors.blueBackground}
             onPress={() => signIn(userInput)}
-            disabled={userInput.length < 5 || validateUserInput(userInput)}>
+            accessibilityState={{disabled: isDisabled()}}
+            disabled={isDisabled()}>
             <Text style={styles.buttonText}>{copies.LOGIN_SCREEN.SIGN_IN}</Text>
           </TouchableHighlight>
         </>
