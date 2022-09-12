@@ -6,6 +6,12 @@ export enum STATE_MODULES {
   PHOTOS = 'photos',
 }
 
+export enum ACTIONS {
+  GET_PHOTOS = 'GET_PHOTOS',
+  GET_ALBUMS = 'GET_ALBUMS',
+  GET_PHOTO_DETAIL = 'GET_PHOTO_DETAIL',
+}
+
 export const copies = {
   ALBUMS_TITLE: 'Albums',
   PHOTOS_TITLE: 'Photos',
