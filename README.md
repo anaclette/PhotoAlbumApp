@@ -4,10 +4,12 @@ This is simple app with an album and a photo list with photo details fetched fro
 
 ## Implemented tools
 
+<div style={display: "flex"}>
 <img src="/assets/images/JS_logo.png" width="70" alt="Javascript logo"/>
 <img src="/assets/images/RN_logo.webp" width="110" alt="React Native logo"/>
 <img src="/assets/images/TS_logo.png" width="70" alt="Typescript logo"/>
 <img src="/assets/images/Redux_logo.jpeg" width="130" alt="Redux logo"/>
+<div>
 
 ## Implemented libraries
 
@@ -39,7 +41,7 @@ Redux toolkit has inbuilt functions that reduce boilerplate code significantly. 
 
 Just clone the repo, run "yarn install", then open your iOS simulator, Android emulator, or physical device with Developer mode on, and ~~pray it works~~ you're done!
 
-##### About feedback
+### About feedback
 
 Constructive criticism is to me, not only welcome, but actually extremely useful to help me improving my skills while growing into a valuable asset as part of a team. Your input on how I could do better will be much appreciated!
 
