@@ -1,8 +1,15 @@
 export const API_HOST = 'https://jsonplaceholder.typicode.com';
 
-export enum ENDPOINTS {
+export enum STATE_MODULES {
+  AUTH = 'auth',
   ALBUMS = 'albums',
   PHOTOS = 'photos',
+}
+
+export enum ACTIONS {
+  GET_PHOTOS = 'GET_PHOTOS',
+  GET_ALBUMS = 'GET_ALBUMS',
+  GET_PHOTO_DETAIL = 'GET_PHOTO_DETAIL',
 }
 
 export const copies = {

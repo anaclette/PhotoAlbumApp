@@ -8,6 +8,7 @@ import {
   ScrollView,
   RefreshControl,
   Animated,
+  Alert,
 } from 'react-native';
 import {capitalizeFirstLetter, wait} from '../../../utils/stringUtils';
 import {RootStackParams} from '../../../navigation/StackNavigator';
@@ -65,7 +66,25 @@ export const PhotoDetail = ({route, navigation}: Props) => {
             <Text style={styles.title}>{capitalizeFirstLetter(title)}</Text>
             <Animated.View
               style={{...styles.imageContainer, opacity: fadeAnim}}>
+              <Pressable
+                style={styles.previousArrowButton}
+                onPress={() => Alert.alert('a la anterior!')}>
+                <Icon
+                  size={metrics.scale(15)}
+                  name="arrow-back"
+                  color={colors.purple}
+                />
+              </Pressable>
               <Image source={{uri: thumbnailUrl}} style={styles.image} />
+              <Pressable
+                style={styles.nextArrowButton}
+                onPress={() => Alert.alert('a la siguiente!')}>
+                <Icon
+                  size={metrics.scale(15)}
+                  name="arrow-forward"
+                  color={colors.purple}
+                />
+              </Pressable>
             </Animated.View>
           </ScrollView>
         )}

@@ -1,8 +1,7 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {Platform, TouchableOpacity} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {AuthContext} from '../../state/Auth';
 
 import Albums from '../../views/Albums';
 import Photos from '../../views/Photos';
@@ -12,18 +11,19 @@ import Home from '../../views/Home';
 import {colors} from '../../themes/colors';
 import {styles} from './tabs.style';
 import {getIconName} from '../../utils/stringUtils';
+import {useSelector} from 'react-redux';
+import {RootState} from '../../types/types';
 
 export const Tabs = () => {
   const insets = useSafeAreaInsets();
-  const {authState} = useContext(AuthContext);
-  const {isLoggedIn} = authState;
+  const username = useSelector((state: RootState) => state.auth.username);
   const CustomTabs = createMaterialTopTabNavigator();
   const platformIsIos = Platform.OS === 'ios';
 
   const showTabs = () => {
     return (
       <>
-        {isLoggedIn && (
+        {!!username && (
           <>
             <CustomTabs.Screen name="Home" component={Home} />
             <CustomTabs.Screen name="Albums" component={Albums} />

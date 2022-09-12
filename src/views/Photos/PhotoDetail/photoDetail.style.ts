@@ -38,4 +38,12 @@ export const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     marginLeft: metrics.scale(20),
   },
+  previousArrowButton: {
+    position: 'absolute',
+    left: metrics.scale(3),
+  },
+  nextArrowButton: {
+    position: 'absolute',
+    right: metrics.scale(3),
+  },
 });

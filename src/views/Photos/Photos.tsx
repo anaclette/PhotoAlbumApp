@@ -1,38 +1,32 @@
-import React, {useCallback, useState} from 'react';
-import {API_HOST, copies, ENDPOINTS} from '../../utils/variables';
-import {useSelector, useDispatch} from 'react-redux';
-import useFetch from '../../utils/hooks/useFetch';
+import React, {useCallback, useEffect} from 'react';
+import {copies} from '../../utils/variables';
+import {useSelector} from 'react-redux';
 import {Text, FlatList, SafeAreaView, View, RefreshControl} from 'react-native';
 import PhotoItem from '../../components/PhotoItem';
 import {StackScreenProps} from '@react-navigation/stack';
 import {RootStackParams} from '../../navigation/StackNavigator';
 import Loader from '../Loader';
-import {wait} from '../../utils/stringUtils';
 import {styles} from './photos.style';
+import {getPhotos} from '../../state/thunks';
+import {Photo, RootState} from '../../types/types';
 
-interface Props extends StackScreenProps<RootStackParams, 'Photos'> {
-  title: string;
-}
+interface Props extends StackScreenProps<RootStackParams, 'Photos'> {}
 
 export const Photos = ({navigation, route}: Props) => {
-  // export const Photos = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const loading = useSelector((state: RootState) => state.photos.loading);
+  const error = useSelector((state: RootState) => state.photos.error);
+  const data = useSelector((state: RootState) => state.photos.data);
 
-  // const photos = useSelector(state => )
-
-  const {response, error, loading} = useFetch(
-    `${API_HOST}/${ENDPOINTS.PHOTOS}`,
-  );
-
-  const loadingState = loading || isLoading;
+  useEffect(() => {
+    getPhotos();
+  }, []);
 
   const onRefresh = useCallback(() => {
-    setIsLoading(true);
-    wait(2000).then(() => setIsLoading(false));
+    getPhotos();
   }, []);
 
   const renderItem = useCallback(
-    ({item, index}: {item: Props; index: number}) => {
+    ({item, index}: {item: Photo; index: number}) => {
       return (
         <PhotoItem
           navigation={navigation}
@@ -48,7 +42,7 @@ export const Photos = ({navigation, route}: Props) => {
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.title}>{copies.PHOTOS_TITLE}</Text>
-      {loadingState ? (
+      {loading ? (
         <Loader />
       ) : error ? (
         <View style={styles.errorContainer}>
@@ -58,10 +52,10 @@ export const Photos = ({navigation, route}: Props) => {
         <>
           <FlatList
             refreshControl={
-              <RefreshControl refreshing={loadingState} onRefresh={onRefresh} />
+              <RefreshControl refreshing={loading} onRefresh={onRefresh} />
             }
             style={styles.list}
-            data={loadingState ? [] : response}
+            data={data}
             keyExtractor={(_, index) => 'key' + index}
             renderItem={renderItem}
           />

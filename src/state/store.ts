@@ -13,21 +13,23 @@ import {
 import authReducer from './reducers/authReducer';
 import albumReducer from './reducers/albumReducer';
 import photosReducer from './reducers/photosReducer';
+import {RootState} from '../types/types';
+import {STATE_MODULES} from '../utils/variables';
 
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
 };
 
-const rootReducer = combineReducers({
-  auth: authReducer,
-  albums: albumReducer,
-  photos: photosReducer,
+const rootReducer = combineReducers<RootState>({
+  [STATE_MODULES.AUTH]: authReducer,
+  [STATE_MODULES.ALBUMS]: albumReducer,
+  [STATE_MODULES.PHOTOS]: photosReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-export const store = configureStore({
+const store = configureStore({
   reducer: persistedReducer,
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
@@ -39,7 +41,4 @@ export const store = configureStore({
 
 const persistor = persistStore(store);
 
-const getPersistor = () => persistor;
-const getStore = () => store;
-
-export {getPersistor, getStore};
+export {persistor, store};
