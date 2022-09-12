@@ -32,9 +32,13 @@ This is simple app with an album and a photo list with photo details fetched fro
 
 When it came to updating the application state, Redux forced us to install a number of dependencies and to write large amounts of code to cover such need, which ended up slowing down the development process.
 Redux toolkit has inbuilt functions that reduce boilerplate code significantly. I.e:
+<br />
 ✅ Store setup: createSlice() method allows us to create initial state, actions, reducers and selectors, **_all in one file_**.
+<br />
 ✅ **_We no longer need to_** wrap every React component in higher-order connect() components with functions mapping dispatch and state to props.
+<br />
 ✅ Thunks for async logic and Redux devtools **_do not require_** additional dependencies.
+<br />
 ✅ You can retrieve data from the store and dispatch actions to update the store using useDispatch and useSelector hooks.
 
 ### How to run My albums
