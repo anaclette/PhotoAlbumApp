@@ -6,8 +6,9 @@ import {STATE_MODULES} from '../../utils/variables';
 const initialState: Photos = {
   data: [],
   loading: false,
-  error: null,
+  error: false,
 };
+
 const photosReducer = createSlice({
   name: STATE_MODULES.PHOTOS,
   initialState,
@@ -32,7 +33,7 @@ const photosReducer = createSlice({
           return;
         }
         state.loading = false;
-        state.data = action.payload?.response!;
+        state.data = action.payload.data;
       });
   },
 });
