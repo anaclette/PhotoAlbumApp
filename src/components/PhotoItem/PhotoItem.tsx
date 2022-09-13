@@ -8,9 +8,10 @@ import {capitalizeFirstLetter} from '../../utils/stringUtils';
 import {styles} from './photoItem.style';
 import {colors} from '../../themes/colors';
 import metrics from '../../themes/metrics';
+import {Photo} from '../../types/types';
 
 interface Props extends StackScreenProps<RootStackParams> {
-  photo: {title: string};
+  photo: Photo;
   index: number;
 }
 

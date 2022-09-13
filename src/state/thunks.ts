@@ -1,21 +1,32 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import useFetch from '../utils/hooks/useFetch';
-import {API_HOST, ENDPOINTS} from '../utils/variables';
+import {ACTIONS, API_HOST, STATE_MODULES} from '../utils/variables';
 
-export const getPhotos = createAsyncThunk('user/requestPhotos', async () => {
-  try {
-    const photos = await useFetch(`${API_HOST}/${ENDPOINTS.PHOTOS}`);
-    return photos;
-  } catch (error) {
-    console.warn('Failed to fetch photos');
-  }
-});
+export const getPhotos = createAsyncThunk(
+  `${STATE_MODULES.PHOTOS}/${ACTIONS.GET_PHOTOS}`,
+  async () => {
+    try {
+      const photos = await fetch(`${API_HOST}/${STATE_MODULES.PHOTOS}`)
+        .then(response => response.json())
+        .then(data => data);
+      console.log('photos from thunk: ', photos);
+      return photos;
+    } catch (error) {
+      console.error(error);
+    }
+  },
+);
 
-export const getAlbums = createAsyncThunk('user/requestAlbums', async () => {
-  try {
-    const albums = await useFetch(`${API_HOST}/${ENDPOINTS.ALBUMS}`);
-    return albums;
-  } catch (error) {
-    console.warn('Failed to fetch albums');
-  }
-});
+export const getAlbums = createAsyncThunk(
+  `${STATE_MODULES.ALBUMS}/${ACTIONS.GET_ALBUMS}`,
+  async () => {
+    try {
+      const albums = await fetch(`${API_HOST}/${STATE_MODULES.ALBUMS}`)
+        .then(response => response.json())
+        .then(data => data);
+      console.log('albums from thunk: ', albums);
+      return albums;
+    } catch (error) {
+      console.warn('Failed to fetch albums');
+    }
+  },
+);
