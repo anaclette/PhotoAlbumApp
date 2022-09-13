@@ -7,7 +7,6 @@ import {
   useWindowDimensions,
   SafeAreaView,
 } from 'react-native';
-import {AuthContext} from '../../state/Auth';
 import {copies} from '../../utils/variables';
 import {
   handleUserMessage,
@@ -113,7 +112,8 @@ export const Login = () => {
             activeOpacity={0.8}
             underlayColor={colors.blueBackground}
             onPress={() => dispatch(logIn(userInput))}
-            disabled={userInput.length < 5 || validateUserInput(userInput)}>
+            accessibilityState={{disabled: isDisabled()}}
+            disabled={isDisabled()}>
             <Text style={styles.buttonText}>{copies.LOGIN_SCREEN.SIGN_IN}</Text>
           </TouchableHighlight>
         </>
