@@ -4,12 +4,12 @@ This is a simple app with an album list and a photo list with photo details fetc
 
 ## Implemented tools
 
-<div style={display: "flex"}>
+<p style="display: flex; justify-content: space-around; align-items: center">
 <img src="/assets/images/JS_logo.png" width="70" alt="Javascript logo"/>
 <img src="/assets/images/RN_logo.webp" width="110" alt="React Native logo"/>
 <img src="/assets/images/TS_logo.png" width="70" alt="Typescript logo"/>
-<img src="/assets/images/Redux_logo.jpeg" width="130" alt="Redux logo"/>
-<div>
+<img src="/assets/images/Redux_logo.jpeg" width="110" alt="Redux logo"/>
+</p>
 
 ## Implemented libraries
 
