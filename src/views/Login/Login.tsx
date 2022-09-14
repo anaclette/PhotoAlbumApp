@@ -15,13 +15,12 @@ import {
 } from '../../utils/stringUtils';
 import {styles} from './login.style';
 import {colors} from '../../themes/colors';
-import {useDispatch, useSelector} from 'react-redux';
 import {logIn, logOut} from '../../state/reducers/authReducer';
-import {RootState} from '../../types/types';
+import {useAppDispatch, useAppSelector} from '../../state/hooks';
 
 export const Login = () => {
-  const dispatch = useDispatch();
-  const username = useSelector((state: RootState) => state.auth.username);
+  const dispatch = useAppDispatch();
+  const username = useAppSelector(state => state.auth.username);
   const [userInput, setUserInput] = useState('');
   const [emptyField, setEmptyField] = useState(false);
   const {height} = useWindowDimensions();

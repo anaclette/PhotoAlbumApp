@@ -11,12 +11,11 @@ import Home from '../../views/Home';
 import {colors} from '../../themes/colors';
 import {styles} from './tabs.style';
 import {getIconName} from '../../utils/stringUtils';
-import {useSelector} from 'react-redux';
-import {RootState} from '../../types/types';
+import {useAppSelector} from '../../state/hooks';
 
 export const Tabs = () => {
   const insets = useSafeAreaInsets();
-  const username = useSelector((state: RootState) => state.auth.username);
+  const username = useAppSelector(state => state.auth.username);
   const CustomTabs = createMaterialTopTabNavigator();
   const platformIsIos = Platform.OS === 'ios';
 
