@@ -13,7 +13,6 @@ import {
 import authReducer from './reducers/authReducer';
 import albumReducer from './reducers/albumReducer';
 import photosReducer from './reducers/photosReducer';
-import {RootState} from '../types/types';
 import {STATE_MODULES} from '../utils/variables';
 
 const persistConfig = {
@@ -21,7 +20,7 @@ const persistConfig = {
   storage: AsyncStorage,
 };
 
-const rootReducer = combineReducers<RootState>({
+const rootReducer = combineReducers({
   [STATE_MODULES.AUTH]: authReducer,
   [STATE_MODULES.ALBUMS]: albumReducer,
   [STATE_MODULES.PHOTOS]: photosReducer,
@@ -40,5 +39,8 @@ const store = configureStore({
 });
 
 const persistor = persistStore(store);
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
 
 export {persistor, store};

@@ -27,9 +27,3 @@ export interface Albums {
   loading: boolean;
   error: any;
 }
-
-export interface RootState {
-  auth: Auth;
-  photos: Photos;
-  albums: Albums;
-}
