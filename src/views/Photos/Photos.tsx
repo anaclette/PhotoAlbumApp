@@ -1,6 +1,5 @@
 import React, {useCallback, useEffect} from 'react';
 import {copies} from '../../utils/variables';
-import {useSelector} from 'react-redux';
 import {Text, FlatList, SafeAreaView, View, RefreshControl} from 'react-native';
 import PhotoItem from '../../components/PhotoItem';
 import {StackScreenProps} from '@react-navigation/stack';
@@ -8,17 +7,19 @@ import {RootStackParams} from '../../navigation/StackNavigator';
 import Loader from '../Loader';
 import {styles} from './photos.style';
 import {getPhotos} from '../../state/thunks';
-import {Photo, RootState} from '../../types/types';
+import {Photo} from '../../types/types';
+import {useAppDispatch, useAppSelector} from '../../state/hooks';
 
 interface Props extends StackScreenProps<RootStackParams, 'Photos'> {}
 
 export const Photos = ({navigation, route}: Props) => {
-  const loading = useSelector((state: RootState) => state.photos.loading);
-  const error = useSelector((state: RootState) => state.photos.error);
-  const data = useSelector((state: RootState) => state.photos.data);
+  const loading = useAppSelector(state => state.photos.loading);
+  const error = useAppSelector(state => state.photos.error);
+  const data = useAppSelector(state => state.photos.data);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    getPhotos();
+    dispatch(getPhotos());
   }, []);
 
   const onRefresh = useCallback(() => {

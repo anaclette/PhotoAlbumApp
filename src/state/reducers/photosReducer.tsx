@@ -1,13 +1,15 @@
-import {createSlice} from '@reduxjs/toolkit';
-import {Photos} from '../../types/types';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {Photos, Photo} from '../../types/types';
 import {getPhotos} from '../thunks';
 import {STATE_MODULES} from '../../utils/variables';
 
-const initialState: Photos = {
+const initialState = {
   data: [],
   loading: false,
   error: false,
-};
+} as Photos;
+
+const {pending, fulfilled, rejected} = getPhotos;
 
 const photosReducer = createSlice({
   name: STATE_MODULES.PHOTOS,
@@ -15,25 +17,16 @@ const photosReducer = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder
-      .addCase(getPhotos.pending, (state, action) => {
-        if (state.loading) {
-          return;
-        }
+      .addCase(pending, state => {
         state.loading = true;
       })
-      .addCase(getPhotos.rejected, (state, action) => {
-        if (!state.loading) {
-          return;
-        }
+      .addCase(rejected, (state, action) => {
         state.loading = false;
         state.error = action.error;
       })
-      .addCase(getPhotos.fulfilled, (state, action) => {
-        if (!state.loading) {
-          return;
-        }
+      .addCase(fulfilled, (state, action: PayloadAction<Photo[]>) => {
         state.loading = false;
-        state.data = action.payload.data;
+        state.data = action.payload;
       });
   },
 });

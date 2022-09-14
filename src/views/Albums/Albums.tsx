@@ -4,25 +4,21 @@ import {Text, FlatList, SafeAreaView, View, RefreshControl} from 'react-native';
 import AlbumItem from '../../components/AlbumItem';
 import Loader from '../Loader';
 import {styles} from './albums.style';
-import {wait} from '../../utils/stringUtils';
-import {useSelector} from 'react-redux';
-import {Album, RootState} from '../../types/types';
+import {Album} from '../../types/types';
 import {getAlbums} from '../../state/thunks';
+import {useAppDispatch, useAppSelector} from '../../state/hooks';
 
 export const Albums = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const loading = useSelector((state: RootState) => state.albums.loading);
-  const data = useSelector((state: RootState) => state.albums.data);
-  const error = useSelector((state: RootState) => state.albums.error);
-
-  const loader = loading || isLoading;
-
-  const onRefresh = useCallback(() => {
-    setIsLoading(true);
-    wait(2000).then(() => setIsLoading(false));
-  }, []);
+  const loading = useAppSelector(state => state.albums.loading);
+  const data = useAppSelector(state => state.albums.data);
+  const error = useAppSelector(state => state.albums.error);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
+    dispatch(getAlbums());
+  }, []);
+
+  const onRefresh = useCallback(() => {
     getAlbums();
   }, []);
 
@@ -38,7 +34,7 @@ export const Albums = () => {
       <Text style={[styles.title, styles.shadowProp]}>
         {copies.ALBUMS_TITLE}
       </Text>
-      {loader ? (
+      {loading ? (
         <Loader />
       ) : error ? (
         <View style={styles.errorContainer}>
@@ -48,7 +44,7 @@ export const Albums = () => {
         <View style={styles.list}>
           <FlatList
             refreshControl={
-              <RefreshControl refreshing={isLoading} onRefresh={onRefresh} />
+              <RefreshControl refreshing={loading} onRefresh={onRefresh} />
             }
             contentContainerStyle={styles.contentContainerStyle}
             numColumns={2}

@@ -1,13 +1,15 @@
-import {createSlice} from '@reduxjs/toolkit';
-import {STATE_MODULES} from '../../utils/variables';
-import {Albums} from '../../types/types';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {Albums, Album} from '../../types/types';
 import {getAlbums} from '../thunks';
+import {STATE_MODULES} from '../../utils/variables';
 
-const initialState: Albums = {
+const initialState = {
   data: [],
   loading: false,
   error: null,
-};
+} as Albums;
+
+const {pending, fulfilled, rejected} = getAlbums;
 
 const albumReducer = createSlice({
   name: STATE_MODULES.ALBUMS,
@@ -15,25 +17,16 @@ const albumReducer = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder
-      .addCase(getAlbums.pending, (state, action) => {
-        if (state.loading) {
-          return;
-        }
+      .addCase(pending, state => {
         state.loading = true;
       })
-      .addCase(getAlbums.rejected, (state, action) => {
-        if (!state.loading) {
-          return;
-        }
+      .addCase(rejected, (state, action) => {
         state.loading = false;
         state.error = action.error;
       })
-      .addCase(getAlbums.fulfilled, (state, action) => {
-        if (!state.loading) {
-          return;
-        }
+      .addCase(fulfilled, (state, action: PayloadAction<Album[]>) => {
         state.loading = false;
-        state.data = action.payload?.response!;
+        state.data = action.payload;
       });
   },
 });
