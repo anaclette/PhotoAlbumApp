@@ -54,3 +54,7 @@ export const getIconName = (route: {name: string}) => {
   }
   return {iconName, label};
 };
+
+export const wait = (timeout: number) => {
+  return new Promise(resolve => setTimeout(resolve, timeout));
+};

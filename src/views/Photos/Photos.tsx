@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {copies} from '../../utils/variables';
 import {Text, FlatList, SafeAreaView, View, RefreshControl} from 'react-native';
 import PhotoItem from '../../components/PhotoItem';
@@ -8,11 +8,13 @@ import Loader from '../Loader';
 import {styles} from './photos.style';
 import {getPhotos} from '../../state/thunks';
 import {Photo} from '../../types/types';
+import {wait} from '../../utils/stringUtils';
 import {useAppDispatch, useAppSelector} from '../../state/hooks';
 
 interface Props extends StackScreenProps<RootStackParams, 'Photos'> {}
 
 export const Photos = ({navigation, route}: Props) => {
+  const [isLoading, setIsLoading] = useState(false);
   const loading = useAppSelector(state => state.photos.loading);
   const error = useAppSelector(state => state.photos.error);
   const data = useAppSelector(state => state.photos.data);
@@ -23,7 +25,8 @@ export const Photos = ({navigation, route}: Props) => {
   }, []);
 
   const onRefresh = useCallback(() => {
-    getPhotos();
+    setIsLoading(true);
+    wait(2000).then(() => setIsLoading(false));
   }, []);
 
   const renderItem = useCallback(
@@ -43,7 +46,7 @@ export const Photos = ({navigation, route}: Props) => {
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.title}>{copies.PHOTOS_TITLE}</Text>
-      {loading ? (
+      {isLoading ? (
         <Loader />
       ) : error ? (
         <View style={styles.errorContainer}>

@@ -7,8 +7,10 @@ import {styles} from './albums.style';
 import {Album} from '../../types/types';
 import {getAlbums} from '../../state/thunks';
 import {useAppDispatch, useAppSelector} from '../../state/hooks';
+import {wait} from '../../utils/stringUtils';
 
 export const Albums = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const loading = useAppSelector(state => state.albums.loading);
   const data = useAppSelector(state => state.albums.data);
   const error = useAppSelector(state => state.albums.error);
@@ -19,7 +21,8 @@ export const Albums = () => {
   }, []);
 
   const onRefresh = useCallback(() => {
-    getAlbums();
+    setIsLoading(true);
+    wait(2000).then(() => setIsLoading(false));
   }, []);
 
   const renderItem = useCallback(
@@ -34,7 +37,7 @@ export const Albums = () => {
       <Text style={[styles.title, styles.shadowProp]}>
         {copies.ALBUMS_TITLE}
       </Text>
-      {loading ? (
+      {isLoading ? (
         <Loader />
       ) : error ? (
         <View style={styles.errorContainer}>
