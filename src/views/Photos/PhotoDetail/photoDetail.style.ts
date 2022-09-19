@@ -4,6 +4,7 @@ import metrics from '../../../themes/metrics';
 import typography from '../../../themes/typography';
 
 const ITEM_SIZE = metrics.screenWidth - metrics.scale(70);
+const WINDOW_TOP_DISTANCE = metrics.screenHeight / 3;
 
 export const styles = StyleSheet.create({
   container: {
@@ -41,9 +42,12 @@ export const styles = StyleSheet.create({
   previousArrowButton: {
     position: 'absolute',
     left: metrics.scale(3),
+    top: WINDOW_TOP_DISTANCE,
+    zIndex: 1,
   },
   nextArrowButton: {
     position: 'absolute',
     right: metrics.scale(3),
+    top: WINDOW_TOP_DISTANCE,
   },
 });
