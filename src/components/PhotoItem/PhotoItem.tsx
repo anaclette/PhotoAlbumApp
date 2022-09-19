@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react';
+import React, {useMemo, useState} from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {Text, TouchableOpacity, View} from 'react-native';
 import {StackScreenProps} from '@react-navigation/stack';
@@ -16,6 +16,8 @@ interface Props extends StackScreenProps<RootStackParams> {
 }
 
 export const PhotoItem = ({photo, index, navigation}: Props) => {
+  const [currentIndex, setCurrentIndex] = useState(index);
+
   const icon = useMemo(() => {
     return randomIcon();
   }, [photo]);
@@ -26,15 +28,17 @@ export const PhotoItem = ({photo, index, navigation}: Props) => {
         accessible={true}
         accessibilityLabel={`Photo: ${photo.title}`}
         style={styles.button}
-        onPress={() =>
+        onPress={() => {
+          setCurrentIndex(index);
           navigation.navigate('PhotoDetail', {
             id: photo['id'],
             albumId: photo['albumId'],
             title: photo['title'],
             url: photo['url'],
             thumbnailUrl: photo['thumbnailUrl'],
-          })
-        }>
+            index: currentIndex,
+          });
+        }}>
         <Icon
           accessibilityRole="image"
           color={colors.purple}

@@ -8,6 +8,7 @@ export type Photo = {
   title: string;
   url: string;
   thumbnailUrl: string;
+  index: number;
 };
 
 export type Album = {
