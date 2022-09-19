@@ -8,7 +8,6 @@ import {
   ScrollView,
   RefreshControl,
   Animated,
-  Alert,
 } from 'react-native';
 import {capitalizeFirstLetter, wait} from '../../../utils/stringUtils';
 import {RootStackParams} from '../../../navigation/StackNavigator';
@@ -18,18 +17,16 @@ import metrics from '../../../themes/metrics';
 import {colors} from '../../../themes/colors';
 import Loader from '../../Loader';
 import {copies} from '../../../utils/variables';
+import {useAppSelector} from '../../../state/hooks';
 
 interface Props extends StackScreenProps<RootStackParams, 'PhotoDetail'> {}
 
 export const PhotoDetail = ({route, navigation}: Props) => {
   const [refreshing, setRefreshing] = useState(false);
   const fadeAnim = useRef(new Animated.Value(0)).current;
-  const {title, thumbnailUrl} = route.params;
-
-  const onRefresh = () => {
-    setRefreshing(true);
-    wait(2000).then(() => setRefreshing(false));
-  };
+  const photos = useAppSelector(state => state.photos.data);
+  const {index} = route.params;
+  const [currentPhotoIndex, setCurrentPhotoIndex] = useState(index);
 
   useEffect(() => {
     Animated.timing(fadeAnim, {
@@ -39,9 +36,16 @@ export const PhotoDetail = ({route, navigation}: Props) => {
     }).start();
   }, [fadeAnim]);
 
+  const onRefresh = () => {
+    setRefreshing(true);
+    wait(2000).then(() => setRefreshing(false));
+  };
+
+  const currentPhoto = photos[currentPhotoIndex];
+
   return (
     <>
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView style={styles.safeAreaView}>
         <Pressable
           accessible={true}
           accessibilityLabel={copies.ACCESSIBILITY_LABEL.BACK}
@@ -55,6 +59,7 @@ export const PhotoDetail = ({route, navigation}: Props) => {
             color={colors.purple}
           />
         </Pressable>
+
         {refreshing ? (
           <Loader />
         ) : (
@@ -63,29 +68,44 @@ export const PhotoDetail = ({route, navigation}: Props) => {
             refreshControl={
               <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
             }>
-            <Text style={styles.title}>{capitalizeFirstLetter(title)}</Text>
+            <Pressable
+              style={styles.previousArrowButton}
+              disabled={currentPhotoIndex === 0}
+              onPress={() =>
+                setCurrentPhotoIndex(
+                  prevCurrentPhotoIndex => prevCurrentPhotoIndex - 1,
+                )
+              }>
+              <Icon
+                size={metrics.scale(15)}
+                name="arrow-back"
+                color={colors.purple}
+              />
+            </Pressable>
+            <Text style={styles.title}>
+              {capitalizeFirstLetter(currentPhoto.title)}
+            </Text>
             <Animated.View
               style={{...styles.imageContainer, opacity: fadeAnim}}>
-              <Pressable
-                style={styles.previousArrowButton}
-                onPress={() => Alert.alert('a la anterior!')}>
-                <Icon
-                  size={metrics.scale(15)}
-                  name="arrow-back"
-                  color={colors.purple}
-                />
-              </Pressable>
-              <Image source={{uri: thumbnailUrl}} style={styles.image} />
-              <Pressable
-                style={styles.nextArrowButton}
-                onPress={() => Alert.alert('a la siguiente!')}>
-                <Icon
-                  size={metrics.scale(15)}
-                  name="arrow-forward"
-                  color={colors.purple}
-                />
-              </Pressable>
+              <Image
+                source={{uri: currentPhoto.thumbnailUrl}}
+                style={styles.image}
+              />
             </Animated.View>
+            <Pressable
+              style={styles.nextArrowButton}
+              disabled={currentPhotoIndex === photos.length - 1}
+              onPress={() =>
+                setCurrentPhotoIndex(
+                  prevCurrentPhotoIndex => prevCurrentPhotoIndex + 1,
+                )
+              }>
+              <Icon
+                size={metrics.scale(15)}
+                name="arrow-forward"
+                color={colors.purple}
+              />
+            </Pressable>
           </ScrollView>
         )}
       </SafeAreaView>
