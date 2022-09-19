@@ -1,6 +1,6 @@
-# My albums app [WIP]
+# My albums app
 
-This is a simple app with an album list and a photo list with photo details fetched from https://jsonplaceholder.typicode.com API. It's been a challenge I took up for learning purposes. And it's still missing some issues I need to tackle to finish it.
+This is a simple app with an album list and a photo list with photo details fetched from https://jsonplaceholder.typicode.com API. It's been a challenge I took up for learning purposes.
 
 ## Implemented tools
 
