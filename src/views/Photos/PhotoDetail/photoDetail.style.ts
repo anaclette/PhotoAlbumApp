@@ -7,10 +7,14 @@ const ITEM_SIZE = metrics.screenWidth - metrics.scale(70);
 const WINDOW_TOP_DISTANCE = metrics.screenHeight / 3;
 
 export const styles = StyleSheet.create({
-  container: {
+  safeAreaView: {
     flex: 1,
     alignItems: 'center',
     backgroundColor: colors.beige,
+  },
+  container: {
+    justifyContent: 'space-evenly',
+    height: WINDOW_TOP_DISTANCE * 2,
   },
   title: {
     ...typography.sectionTitle,
@@ -42,12 +46,12 @@ export const styles = StyleSheet.create({
   previousArrowButton: {
     position: 'absolute',
     left: metrics.scale(3),
-    top: WINDOW_TOP_DISTANCE,
+    top: WINDOW_TOP_DISTANCE * 1.2,
     zIndex: 1,
   },
   nextArrowButton: {
     position: 'absolute',
     right: metrics.scale(3),
-    top: WINDOW_TOP_DISTANCE,
+    top: WINDOW_TOP_DISTANCE * 1.2,
   },
 });
