@@ -1,5 +1,5 @@
 import {StackScreenProps} from '@react-navigation/stack';
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useRef, useState, useMemo, useCallback} from 'react';
 import {
   Text,
   SafeAreaView,
@@ -41,7 +41,24 @@ export const PhotoDetail = ({route, navigation}: Props) => {
     wait(2000).then(() => setRefreshing(false));
   };
 
-  const currentPhoto = photos[currentPhotoIndex];
+  const currentPhoto = useMemo(() => {
+    return photos[currentPhotoIndex];
+  }, [currentPhotoIndex]);
+
+  const onNextPress = useCallback(
+    () =>
+      setCurrentPhotoIndex(prevCurrentPhotoIndex => prevCurrentPhotoIndex - 1),
+    [currentPhotoIndex],
+  );
+
+  const onPreviousPress = useCallback(
+    () =>
+      setCurrentPhotoIndex(prevCurrentPhotoIndex => prevCurrentPhotoIndex + 1),
+    [currentPhotoIndex],
+  );
+
+  const disablePrevious = currentPhotoIndex === 0;
+  const disableNext = currentPhotoIndex === photos.length - 1;
 
   return (
     <>
@@ -69,17 +86,14 @@ export const PhotoDetail = ({route, navigation}: Props) => {
               <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
             }>
             <Pressable
-              style={styles.previousArrowButton}
-              disabled={currentPhotoIndex === 0}
-              onPress={() =>
-                setCurrentPhotoIndex(
-                  prevCurrentPhotoIndex => prevCurrentPhotoIndex - 1,
-                )
-              }>
+              android_ripple={{color: colors.gray, borderless: true}}
+              style={[styles.previousArrowButton, styles.arrowButton]}
+              disabled={disablePrevious}
+              onPress={onNextPress}>
               <Icon
-                size={metrics.scale(15)}
+                size={metrics.scale(25)}
                 name="arrow-back"
-                color={colors.purple}
+                color={disablePrevious ? colors.gray : colors.purple}
               />
             </Pressable>
             <Text style={styles.title}>
@@ -93,17 +107,14 @@ export const PhotoDetail = ({route, navigation}: Props) => {
               />
             </Animated.View>
             <Pressable
-              style={styles.nextArrowButton}
-              disabled={currentPhotoIndex === photos.length - 1}
-              onPress={() =>
-                setCurrentPhotoIndex(
-                  prevCurrentPhotoIndex => prevCurrentPhotoIndex + 1,
-                )
-              }>
+              android_ripple={{color: colors.gray, borderless: true}}
+              style={[styles.nextArrowButton, styles.arrowButton]}
+              disabled={disableNext}
+              onPress={onPreviousPress}>
               <Icon
-                size={metrics.scale(15)}
+                size={metrics.scale(25)}
                 name="arrow-forward"
-                color={colors.purple}
+                color={disableNext ? colors.gray : colors.purple}
               />
             </Pressable>
           </ScrollView>

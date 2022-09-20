@@ -9,11 +9,10 @@ const WINDOW_TOP_DISTANCE = metrics.screenHeight / 3;
 export const styles = StyleSheet.create({
   safeAreaView: {
     flex: 1,
-    alignItems: 'center',
     backgroundColor: colors.beige,
   },
   container: {
-    justifyContent: 'space-evenly',
+    flex: 1,
     height: WINDOW_TOP_DISTANCE * 2,
   },
   title: {
@@ -23,12 +22,13 @@ export const styles = StyleSheet.create({
     marginVertical: metrics.scale(25),
     fontSize: metrics.scale(26),
     textAlign: 'center',
+    height: WINDOW_TOP_DISTANCE / 1.5,
   },
   imageContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    width: ITEM_SIZE + metrics.scale(60),
+    width: '100%',
   },
   image: {
     width: ITEM_SIZE,
@@ -43,15 +43,16 @@ export const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     marginLeft: metrics.scale(20),
   },
-  previousArrowButton: {
+  arrowButton: {
+    borderRadius: metrics.scale(10),
     position: 'absolute',
+    top: WINDOW_TOP_DISTANCE * 1.3,
+  },
+  previousArrowButton: {
     left: metrics.scale(3),
-    top: WINDOW_TOP_DISTANCE * 1.2,
     zIndex: 1,
   },
   nextArrowButton: {
-    position: 'absolute',
     right: metrics.scale(3),
-    top: WINDOW_TOP_DISTANCE * 1.2,
   },
 });
