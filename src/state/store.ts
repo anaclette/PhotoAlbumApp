@@ -1,15 +1,6 @@
 import {combineReducers, configureStore} from '@reduxjs/toolkit';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {
-  persistReducer,
-  persistStore,
-  FLUSH,
-  REHYDRATE,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER,
-} from 'redux-persist';
+import {persistReducer, persistStore} from 'redux-persist';
 import authReducer from './reducers/authReducer';
 import albumReducer from './reducers/albumReducer';
 import photosReducer from './reducers/photosReducer';
@@ -32,9 +23,8 @@ const store = configureStore({
   reducer: persistedReducer,
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
+      immutableCheck: false,
+      serializableCheck: false,
     }),
 });
 
